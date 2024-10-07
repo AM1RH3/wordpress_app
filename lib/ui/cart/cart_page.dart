@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart' show NumberFormat;
 import 'package:woedpress_app/constants/constants.dart';
+import 'package:woedpress_app/providers/loader_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/utils/custom_add_quantity.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
@@ -214,7 +215,9 @@ class _CartPageState extends State<CartPage> {
                                         ),
                                         const SizedBox(width: 5.0),
                                         Text(
-                                          '50.000'.farsiNumber,
+                                          numberFormat
+                                              .format(cartModel.totalAmount)
+                                              .farsiNumber,
                                           style: TextStyle(
                                             fontFamily: 'Lalezar',
                                             color: Constants.primaryColor,
@@ -233,7 +236,20 @@ class _CartPageState extends State<CartPage> {
                         Row(
                           children: [
                             IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.sync)),
+                                onPressed: () {
+                                  Provider.of<LoaderProvider>(context,
+                                          listen: false)
+                                      .settLoadingStatus(false);
+                                  var cartProvider = Provider.of<ShopProvider>(
+                                      context,
+                                      listen: false);
+                                  cartProvider.updateCart((val) {
+                                    Provider.of<LoaderProvider>(context,
+                                            listen: false)
+                                        .settLoadingStatus(true);
+                                  });
+                                },
+                                icon: const Icon(Icons.sync)),
                             InkResponse(
                               child: Container(
                                 padding: const EdgeInsets.symmetric(

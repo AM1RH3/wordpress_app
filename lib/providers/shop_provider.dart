@@ -38,6 +38,16 @@ class ShopProvider with ChangeNotifier {
   List<CartItem>? _itemsinCart;
   List<CartItem>? get iteminCart => _itemsinCart;
 
+  // Sum of Items in ShopInCart
+  double? get totalRecords => _itemsinCart!.length.toDouble();
+
+  // Sum of Price in the Shop In Cart
+  double? get totalAmount => _itemsinCart != null
+      ? _itemsinCart!.map<double?>((e) => e.lineSubtotal).reduce(
+            (value, element) => value! + element!,
+          )
+      : 0;
+
   //! *************************************************  << getAllWordpressPosts >>   *********************************************************
 
   Future<void> getAllWordpressPosts() async {
