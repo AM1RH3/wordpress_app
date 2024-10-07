@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
+import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
 import 'package:woedpress_app/models/woocommerce/login_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
@@ -264,6 +265,31 @@ class APIService {
       );
       if (response.statusCode == 200) {
         responseModel = AddtoCartResModel.fromJson(response.data);
+      }
+      // ignore: deprecated_member_use
+    } on DioError catch (e) {
+      throw 'Error $e';
+    }
+    return responseModel;
+  }
+
+  Future<CustomerDetailsModel?> getCustomerDetails() async {
+    CustomerDetailsModel? responseModel;
+
+    try {
+      int? userID = 1;
+      String url =
+          "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+      Response response = await Dio().get(
+        url,
+        options: Options(
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        responseModel = CustomerDetailsModel.fromJson(response.data);
       }
       // ignore: deprecated_member_use
     } on DioError catch (e) {
