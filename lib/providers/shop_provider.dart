@@ -212,6 +212,7 @@ class ShopProvider with ChangeNotifier {
         await _apiService!.updateCustomerDetails(customerDetailsModel);
     isLoading = false;
     notifyListeners();
+    
   }
 
   void initializeData() {
