@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
+import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/models/wordpress/wordpress_post_model.dart';
@@ -37,6 +38,9 @@ class ShopProvider with ChangeNotifier {
   // items in shopping Cart
   List<CartItem>? _itemsinCart;
   List<CartItem>? get iteminCart => _itemsinCart;
+
+  CustomerDetailsModel? _customerDetailsModel;
+  CustomerDetailsModel? get customerDetailsModel => _customerDetailsModel;
 
   // Sum of Items in ShopInCart
   double? get totalRecords => _itemsinCart!.length.toDouble();
@@ -192,6 +196,22 @@ class ShopProvider with ChangeNotifier {
       onCallBack(cartResModel);
       notifyListeners();
     });
+  }
+
+  fetchShippingDetails() async {
+    _customerDetailsModel ??= CustomerDetailsModel();
+    _customerDetailsModel = await _apiService?.getCustomerDetails();
+    notifyListeners();
+  }
+
+  updateCustomerDetails(CustomerDetailsModel customerDetailsModel) async {
+    isLoading = true;
+    notifyListeners();
+    _customerDetailsModel ??= CustomerDetailsModel();
+    _customerDetailsModel =
+        await _apiService!.updateCustomerDetails(customerDetailsModel);
+    isLoading = false;
+    notifyListeners();
   }
 
   void initializeData() {
