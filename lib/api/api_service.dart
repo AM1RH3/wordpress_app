@@ -297,4 +297,32 @@ class APIService {
     }
     return responseModel;
   }
+
+  Future<CustomerDetailsModel> updateCustomerDetails(
+    CustomerDetailsModel model,
+  ) async {
+    CustomerDetailsModel? responseModel;
+
+    try {
+      int? userID = 1;
+      String url =
+          "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+      Response response = await Dio().post(
+        url,
+        data: model.toJson(),
+        options: Options(
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        responseModel = CustomerDetailsModel.fromJson(response.data);
+      }
+      // ignore: deprecated_member_use
+    } on DioError catch (e) {
+      throw 'Error $e';
+    }
+    return responseModel!;
+  }
 }
