@@ -42,7 +42,7 @@ class _ProductDetailState extends State<ProductDetail> {
           body: Stack(
             children: [
               //! ******************************************** < AppBar > ****************************************************
-              const CustomAppBar(appBarTitle: 'توضیحات محصول'),
+              const BuildCustomAppBar(appBarTitle: 'توضیحات محصول'),
               Positioned(
                 top: 100.0,
                 left: 20.0,

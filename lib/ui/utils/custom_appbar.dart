@@ -1,37 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:woedpress_app/constants/constants.dart';
 
-class CustomAppBar extends StatelessWidget {
+class BuildCustomAppBar extends StatelessWidget {
   final String appBarTitle;
-  const CustomAppBar({
+  const BuildCustomAppBar({
     required this.appBarTitle,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 50.0,
-      left: 20.0,
-      right: 20.0,
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 40.0,
-              width: 40.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50.0),
-                color: Constants.primaryColor.withOpacity(0.15),
+          Icon(
+            color: Constants.blackColor,
+            Icons.notifications,
+            size: 30.0,
+          ),
+          Text(
+            appBarTitle,
+            style: TextStyle(
+              color: Constants.blackColor,
+              fontFamily: 'Lalezar',
+              fontSize: 24.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BuildCustomAppBar2 extends StatelessWidget {
+  final String appBarTitle;
+  const BuildCustomAppBar2({
+    required this.appBarTitle,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 3),
+            child: IconButton(
+              color: Constants.blackColor,
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 27.0,
               ),
-              child: Icon(
-                Icons.close,
-                color: Constants.primaryColor,
-              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
           Text(
@@ -39,7 +66,7 @@ class CustomAppBar extends StatelessWidget {
             style: TextStyle(
               color: Constants.blackColor,
               fontFamily: 'Lalezar',
-              fontSize: 25.0,
+              fontSize: 24.0,
             ),
           ),
         ],

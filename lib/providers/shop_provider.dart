@@ -18,6 +18,7 @@ class ShopProvider with ChangeNotifier {
 
   bool isLoading = false;
   bool isLoadingPosts = false;
+  bool isLoadingShippingDetails = false;
 
   // For Store All-Products
   // List<Product> _product = <Product>[];
@@ -205,14 +206,13 @@ class ShopProvider with ChangeNotifier {
   }
 
   updateCustomerDetails(CustomerDetailsModel customerDetailsModel) async {
-    isLoading = true;
+    isLoadingShippingDetails = true;
     notifyListeners();
     _customerDetailsModel ??= CustomerDetailsModel();
     _customerDetailsModel =
         await _apiService!.updateCustomerDetails(customerDetailsModel);
-    isLoading = false;
+    isLoadingShippingDetails = false;
     notifyListeners();
-    
   }
 
   void initializeData() {

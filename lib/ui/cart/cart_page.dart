@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart' show NumberFormat;
 import 'package:woedpress_app/constants/constants.dart';
@@ -6,6 +7,7 @@ import 'package:woedpress_app/providers/loader_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/utils/custom_add_quantity.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
+import 'package:woedpress_app/ui/verify_address/verify_address_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -267,7 +269,15 @@ class _CartPageState extends State<CartPage> {
                                   ],
                                 ),
                                 child: InkResponse(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        child: const VerifyAddress(),
+                                        type: PageTransitionType.fade,
+                                      ),
+                                    );
+                                  },
                                   child: const Text(
                                     'مرحله بعد',
                                     style: TextStyle(

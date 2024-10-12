@@ -104,7 +104,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const CustomAppBar(appBarTitle: 'ثبت نام'),
+        title: const BuildCustomAppBar(appBarTitle: 'ثبت نام'),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),

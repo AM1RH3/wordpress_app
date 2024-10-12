@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
@@ -105,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const CustomAppBar(appBarTitle: ' ورود به برنامه'),
+        title: const BuildCustomAppBar(appBarTitle: ' ورود به برنامه'),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
