@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:woedpress_app/ui/payment_options/payment_options.dart';
 import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/custom_form_field.dart';
 import 'package:woedpress_app/ui/utils/validators.dart';
@@ -154,6 +156,12 @@ class _VerifyAddressState extends State<VerifyAddress> {
                         ),
                       ),
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                              child: const PaymentOptions(),
+                              type: PageTransitionType.fade),
+                        );
                         // if (globalKey2.currentState!.validate()) {
                         //   Navigator.of(context).push(
                         //     CupertinoPageRoute(
