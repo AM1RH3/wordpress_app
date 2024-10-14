@@ -33,14 +33,14 @@ class _RootPageState extends State<RootPage> {
 
   List<IconData> iconList = [
     Icons.home,
-    Icons.favorite,
+    Icons.auto_awesome_mosaic_rounded,
     Icons.shopping_cart,
     Icons.person,
   ];
 
   List<String> appBarTitle = [
     'خانه',
-    ' علاقه مندی ها',
+    'دسته بندی',
     'سبد خرید ',
     'پروفایل',
   ];
