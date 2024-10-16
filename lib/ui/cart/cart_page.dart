@@ -299,8 +299,26 @@ class _CartPageState extends State<CartPage> {
             ),
           );
         } else {
-          return const Center(
-            child: Text('سبد خرید خالی است '),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 100,
+                  child: Image.asset('assets/images/add-cart.png'),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'سبد خرید تار عنکبوت بسته است',
+                  style: TextStyle(
+                    fontFamily: 'Lalezar',
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ],
+            ),
           );
         }
       },
