@@ -34,7 +34,7 @@ class _RootPageState extends State<RootPage> {
   List<IconData> iconList = [
     Icons.home,
     Icons.auto_awesome_mosaic_rounded,
-    Icons.shopping_cart,
+    Icons.shopping_bag_rounded,
     Icons.person,
   ];
 
