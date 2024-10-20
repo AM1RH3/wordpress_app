@@ -9,6 +9,20 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
+  Widget buildTextIcon(
+    Icon iconWidget,
+    Text textWidget,
+  ) {
+    return Row(
+      children: [
+        const SizedBox(width: 3.0),
+        iconWidget,
+        const SizedBox(width: 10.0),
+        textWidget,
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,41 +81,31 @@ class _OrdersPageState extends State<OrdersPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20.0),
-                      Row(
-                        children: [
-                          const SizedBox(width: 15.0),
-                          const Icon(Icons.receipt),
-                          const SizedBox(width: 10.0),
-                          const Text(
-                            'درحال بررسی ',
-                            style: TextStyle(
-                              fontFamily: 'Lalezar',
-                              fontSize: 20.0,
-                            ),
+                      buildTextIcon(
+                        const Icon(Icons.receipt_long_outlined),
+                        const Text(
+                          'درحال بررسی',
+                          style: TextStyle(
+                            fontFamily: 'Lalezar',
+                            fontSize: 18.0,
                           ),
-                          const SizedBox(width: 210),
-                          Image.asset(
-                            'assets/images/nexpay.png',
-                            height: 40,
-                          ),
-                        ],
+                        ),
                       ),
                       const Divider(color: Colors.black),
                       const SizedBox(height: 20.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Row(
+                          Row(
                             children: [
-                              Icon(
-                                Icons.info_outline_rounded,
-                              ),
-                              SizedBox(width: 5.0),
-                              Text(
-                                ' شماره سفارش :',
-                                style: TextStyle(
-                                  fontFamily: 'Lalezar',
-                                  fontSize: 18.0,
+                              buildTextIcon(
+                                const Icon(Icons.info_outline_rounded),
+                                const Text(
+                                  'شماره سفارش  :',
+                                  style: TextStyle(
+                                    fontFamily: 'Lalezar',
+                                    fontSize: 18.0,
+                                  ),
                                 ),
                               ),
                             ],
@@ -122,17 +126,16 @@ class _OrdersPageState extends State<OrdersPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Row(
+                          Row(
                             children: [
-                              Icon(
-                                Icons.timelapse,
-                              ),
-                              SizedBox(width: 5.0),
-                              Text(
-                                ' تاریخ  سفارش  : ',
-                                style: TextStyle(
-                                  fontFamily: 'Lalezar',
-                                  fontSize: 18.0,
+                              buildTextIcon(
+                                const Icon(Icons.timelapse_outlined),
+                                const Text(
+                                  'تاریـخ سفـارش  :',
+                                  style: TextStyle(
+                                    fontFamily: 'Lalezar',
+                                    fontSize: 18.0,
+                                  ),
                                 ),
                               ),
                             ],
@@ -147,7 +150,7 @@ class _OrdersPageState extends State<OrdersPage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15.0), 
+                      const SizedBox(height: 15.0),
                     ],
                   ),
                 ),
