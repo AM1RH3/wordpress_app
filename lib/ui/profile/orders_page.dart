@@ -23,6 +23,84 @@ class _OrdersPageState extends State<OrdersPage> {
     );
   }
 
+  Widget orderStatus(String status) {
+    Icon icon;
+    Color color;
+
+    if (status == 'pending' || status == 'processing' || status == 'on-hold') {
+      icon = const Icon(Icons.timer, color: Color.fromARGB(255, 222, 156, 57));
+      color = const Color.fromARGB(255, 196, 121, 8);
+    } else if (status == 'completed') {
+      icon = const Icon(Icons.check, color: Color.fromARGB(255, 73, 164, 74));
+      color = const Color.fromARGB(255, 70, 121, 71);
+    } else if (status == 'cancelled' ||
+        status == 'refunded' ||
+        status == 'failed') {
+      icon = const Icon(Icons.clear, color: Color.fromARGB(255, 163, 63, 63));
+      color = const Color.fromARGB(255, 141, 26, 26);
+    } else {
+      icon = const Icon(Icons.clear, color: Color.fromARGB(255, 163, 63, 63));
+      color = const Color.fromARGB(255, 141, 26, 26);
+    }
+
+    return buildTextIcon(
+      icon,
+      status == 'pending'
+          ? Text(
+              'سفارش در انتظار بررسی',
+              style: TextStyle(
+                color: color,
+                fontFamily: 'Lalezar',
+                fontSize: 16,
+              ),
+            )
+          : status == 'processing'
+              ? Text(
+                  'سفارش درحال انجام',
+                  style: TextStyle(
+                    color: color,
+                    fontFamily: 'Lalezar',
+                    fontSize: 16,
+                  ),
+                )
+              : status == 'on-hold'
+                  ? Text(
+                      'سفارش در انتظار پرداخت',
+                      style: TextStyle(
+                        color: color,
+                        fontFamily: 'Lalezar',
+                        fontSize: 16,
+                      ),
+                    )
+                  : status == 'completed'
+                      ? Text(
+                          'سفارش تکمیل شده',
+                          style: TextStyle(
+                            color: color,
+                            fontFamily: 'Lalezar',
+                            fontSize: 16,
+                          ),
+                        )
+                      : status == 'cancelled'
+                          ? Text(
+                              'سفارش لغو شده',
+                              style: TextStyle(
+                                color: color,
+                                fontFamily: 'Lalezar',
+                                fontSize: 16,
+                              ),
+                            )
+                          : Text(
+                              'کنسل',
+                              style: TextStyle(
+                                color: color,
+                                fontFamily: 'Lalezar',
+                                fontSize: 16,
+                              ),
+                            ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,16 +159,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   child: Column(
                     children: [
                       const SizedBox(height: 20.0),
-                      buildTextIcon(
-                        const Icon(Icons.receipt_long_outlined),
-                        const Text(
-                          'درحال بررسی',
-                          style: TextStyle(
-                            fontFamily: 'Lalezar',
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ),
+                      orderStatus('on-hold'),
                       const Divider(color: Colors.black),
                       const SizedBox(height: 20.0),
                       Row(

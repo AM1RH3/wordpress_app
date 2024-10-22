@@ -325,4 +325,7 @@ class APIService {
     }
     return responseModel!;
   }
+
+ // order model on zarinpall movies
+  Future<List<OrderModel>> getAllOrders() async{}
 }

@@ -22,6 +22,7 @@ class WoocommerceInfo {
   static String addtocartURL = 'addtocart';
   static String cartURL = 'cart';
   static String productCategoryURL = 'products/categories';
+  static String orderURL = 'orders';
 }
 
 class Constants {
