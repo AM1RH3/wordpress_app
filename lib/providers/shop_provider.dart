@@ -182,6 +182,7 @@ class ShopProvider with ChangeNotifier {
 
     if (_itemsinCart == null) initializeData();
 
+    // ignore: avoid_function_literals_in_foreach_calls
     _itemsinCart!.forEach((element) {
       reqModel.products!.add(CartProducts(
         productId: element.productId,
