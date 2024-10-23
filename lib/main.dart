@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:woedpress_app/providers/catalog_provider.dart';
 import 'package:woedpress_app/providers/loader_provider.dart';
+import 'package:woedpress_app/providers/order_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/catalog/catalog_page.dart';
 import 'package:woedpress_app/ui/home/home_page.dart';
 import 'package:woedpress_app/ui/product_details/product_detail.dart';
+import 'package:woedpress_app/ui/profile/orders_page.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
 
 void main() {
@@ -30,6 +32,10 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => CatalogProvider(),
           child: const CatalogPage(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => OrderProvider(),
+          child: const OrdersPage(),
         ),
       ],
       child: const MaterialApp(
