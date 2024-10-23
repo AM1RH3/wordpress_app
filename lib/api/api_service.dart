@@ -7,6 +7,7 @@ import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
 import 'package:woedpress_app/models/woocommerce/login_model.dart';
+import 'package:woedpress_app/models/woocommerce/order_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
@@ -327,5 +328,32 @@ class APIService {
   }
 
  // order model on zarinpall movies
-  Future<List<OrderModel>> getAllOrders() async{}
+   Future<List<OrderModel>> getAllOrders() async {
+    List<OrderModel> allOrders = <OrderModel>[];
+
+    try {
+      LoginResponseModel? loginResponseModel = await SecureSorageDB().loginDetails();
+      if (loginResponseModel?.data != null) {
+        int? userID = loginResponseModel?.data!.id;
+        final String url = "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumerKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
+        Response response = await Dio().get(
+          url,
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          }),
+        );
+
+        if (response.statusCode == 200) {
+          allOrders = (response.data as List)
+              .map(
+                (i) => OrderModel.fromJson(i),
+              )
+              .toList();
+        }
+      }
+    } on DioException catch (e) {
+      throw 'Error $e';
+    }
+    return allOrders;
+  }
 }
