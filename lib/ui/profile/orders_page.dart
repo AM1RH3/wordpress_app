@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/providers/order_provider.dart';
-import 'package:intl/intl.dart' show NumberFormat;
 import 'package:woedpress_app/ui/utils/extensions.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -13,6 +13,15 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
+  @override
+  void initState() {
+    Future.delayed(Duration.zero).then((value) {
+      OrderProvider orderProvider = Provider.of(context, listen: false);
+      orderProvider.fetchOrders();
+    });
+    super.initState();
+  }
+
   Widget buildTextIcon(
     Icon iconWidget,
     Text textWidget,
@@ -103,6 +112,11 @@ class _OrdersPageState extends State<OrdersPage> {
                               ),
                             ),
     );
+  }
+
+  String toStringJalali(Jalali? d) {
+    final f = d!.formatter;
+    return '${d.minute} : ${d.hour}   - -   ${f.y}/${f.m}/${f.d}'.farsiNumber;
   }
 
   @override
@@ -229,9 +243,9 @@ class _OrdersPageState extends State<OrdersPage> {
                                     ],
                                   ),
                                   Text(
-                                    orderModel.allorders![index].orderDate
-                                        .toString()
-                                        .farsiNumber,
+                                    toStringJalali(orderModel
+                                            .allorders![index].orderDate)
+                                        .toString(),
                                     style: TextStyle(
                                       fontFamily: 'Lalezar',
                                       fontSize: 18.0,
