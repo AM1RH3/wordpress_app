@@ -39,12 +39,19 @@ class _ProductDetailState extends State<ProductDetail> {
     return Consumer<LoaderProvider>(
       builder: (context, loader, child) {
         return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: const BuildCustomAppBar2(appBarTitle: 'توضیحات محصول'),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0.0,
+          ),
           body: Stack(
             children: [
               //! ******************************************** < AppBar > ****************************************************
-              const BuildCustomAppBar(appBarTitle: 'توضیحات محصول'),
+              // const BuildCustomAppBar2(appBarTitle: 'توضیحات محصول'),
               Positioned(
-                top: 100.0,
+                //!!!! ??????????
+                top: 10.0,
                 left: 20.0,
                 right: 20.0,
                 child: Container(
@@ -60,13 +67,16 @@ class _ProductDetailState extends State<ProductDetail> {
                         child: SizedBox(
                           height: 230.0,
                           child: Image.network(
-                            widget.product!.images![0].src.toString(),
+                            widget.product!.images != null &&
+                                    widget.product!.images!.isNotEmpty
+                                ? widget.product!.images![0].src.toString()
+                                : 'https://via.placeholder.com/150',
                           ),
                         ),
                       ),
                       //! ******************************** < Toterial Feature > **************************************************
                       const Positioned(
-                        top: 10.0,
+                        top: 100.0,
                         right: 0,
                         child: SizedBox(
                           height: 250,
