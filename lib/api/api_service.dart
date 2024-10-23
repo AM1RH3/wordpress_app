@@ -327,30 +327,33 @@ class APIService {
     return responseModel!;
   }
 
- // order model on zarinpall movies
-   Future<List<OrderModel>> getAllOrders() async {
+  // order model on zarinpall movies
+  Future<List<OrderModel>> getAllOrders() async {
     List<OrderModel> allOrders = <OrderModel>[];
 
     try {
-      LoginResponseModel? loginResponseModel = await SecureSorageDB().loginDetails();
-      if (loginResponseModel?.data != null) {
-        int? userID = loginResponseModel?.data!.id;
-        final String url = "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumerKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
-        Response response = await Dio().get(
-          url,
-          options: Options(headers: {
-            HttpHeaders.contentTypeHeader: 'application/json',
-          }),
-        );
+      // LoginResponseModel? loginResponseModel =
+      //     await SecureSorageDB().loginDetails();
+      // if (loginResponseModel?.data != null) {
+      //   int? userID = loginResponseModel?.data!.id;
+      int? userID = 1;
+      final String url =
+          "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
+      Response response = await Dio().get(
+        url,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+      );
 
-        if (response.statusCode == 200) {
-          allOrders = (response.data as List)
-              .map(
-                (i) => OrderModel.fromJson(i),
-              )
-              .toList();
-        }
+      if (response.statusCode == 200) {
+        allOrders = (response.data as List)
+            .map(
+              (i) => OrderModel.fromJson(i),
+            )
+            .toList();
       }
+      // }
     } on DioException catch (e) {
       throw 'Error $e';
     }
