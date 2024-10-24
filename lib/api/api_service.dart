@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:woedpress_app/constants/constants.dart';
+import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
@@ -169,7 +170,10 @@ class APIService {
   }
 
   Future<AddtoCartResModel> addtoCart(AddtoCartReqModel model) async {
-    model.userId = 1;
+    LoginResponseModel? loginResponseModel = await SharedService.loginDetails();
+    if (loginResponseModel?.data != null) {
+      model.userId = loginResponseModel!.data!.id;
+    }
     String url = WoocommerceInfo.baseURL + WoocommerceInfo.addtocartURL;
 
     late AddtoCartResModel responseModel;
@@ -251,21 +255,25 @@ class APIService {
 
   Future<AddtoCartResModel> getCartItems() async {
     late AddtoCartResModel responseModel;
-    int? userID = 1;
 
     try {
-      final String url =
-          "${WoocommerceInfo.baseURL}${WoocommerceInfo.cartURL}?user_id=$userID&?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
-      Response response = await Dio().get(
-        url,
-        options: Options(
-          headers: {
-            HttpHeaders.contentTypeHeader: 'application/json',
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        responseModel = AddtoCartResModel.fromJson(response.data);
+      LoginResponseModel? loginResponseModel =
+          await SharedService.loginDetails();
+      if (loginResponseModel?.data != null) {
+        int? userID = loginResponseModel!.data!.id;
+        final String url =
+            "${WoocommerceInfo.baseURL}${WoocommerceInfo.cartURL}?user_id=$userID&?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+        Response response = await Dio().get(
+          url,
+          options: Options(
+            headers: {
+              HttpHeaders.contentTypeHeader: 'application/json',
+            },
+          ),
+        );
+        if (response.statusCode == 200) {
+          responseModel = AddtoCartResModel.fromJson(response.data);
+        }
       }
       // ignore: deprecated_member_use
     } on DioError catch (e) {
@@ -278,19 +286,24 @@ class APIService {
     CustomerDetailsModel? responseModel;
 
     try {
-      int? userID = 1;
-      String url =
-          "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
-      Response response = await Dio().get(
-        url,
-        options: Options(
-          headers: {
-            HttpHeaders.contentTypeHeader: 'application/json',
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        responseModel = CustomerDetailsModel.fromJson(response.data);
+      LoginResponseModel? loginResponseModel =
+          await SharedService.loginDetails();
+      if (loginResponseModel?.data != null) {
+        int? userID = loginResponseModel!.data!.id;
+
+        String url =
+            "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+        Response response = await Dio().get(
+          url,
+          options: Options(
+            headers: {
+              HttpHeaders.contentTypeHeader: 'application/json',
+            },
+          ),
+        );
+        if (response.statusCode == 200) {
+          responseModel = CustomerDetailsModel.fromJson(response.data);
+        }
       }
       // ignore: deprecated_member_use
     } on DioError catch (e) {
@@ -305,20 +318,25 @@ class APIService {
     CustomerDetailsModel? responseModel;
 
     try {
-      int? userID = 1;
-      String url =
-          "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
-      Response response = await Dio().post(
-        url,
-        data: model.toJson(),
-        options: Options(
-          headers: {
-            HttpHeaders.contentTypeHeader: 'application/json',
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        responseModel = CustomerDetailsModel.fromJson(response.data);
+      LoginResponseModel? loginResponseModel =
+          await SharedService.loginDetails();
+      if (loginResponseModel?.data != null) {
+        int? userID = loginResponseModel!.data!.id;
+
+        String url =
+            "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+        Response response = await Dio().post(
+          url,
+          data: model.toJson(),
+          options: Options(
+            headers: {
+              HttpHeaders.contentTypeHeader: 'application/json',
+            },
+          ),
+        );
+        if (response.statusCode == 200) {
+          responseModel = CustomerDetailsModel.fromJson(response.data);
+        }
       }
       // ignore: deprecated_member_use
     } on DioError catch (e) {
@@ -336,24 +354,28 @@ class APIService {
       //     await SecureSorageDB().loginDetails();
       // if (loginResponseModel?.data != null) {
       //   int? userID = loginResponseModel?.data!.id;
-      int? userID = 1;
-      final String url =
-          "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
-      Response response = await Dio().get(
-        url,
-        options: Options(headers: {
-          HttpHeaders.contentTypeHeader: 'application/json',
-        }),
-      );
+      LoginResponseModel? loginResponseModel =
+          await SharedService.loginDetails();
+      if (loginResponseModel?.data != null) {
+        int? userID = loginResponseModel?.data!.id;
 
-      if (response.statusCode == 200) {
-        allOrders = (response.data as List)
-            .map(
-              (i) => OrderModel.fromJson(i),
-            )
-            .toList();
+        final String url =
+            "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
+        Response response = await Dio().get(
+          url,
+          options: Options(headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          }),
+        );
+
+        if (response.statusCode == 200) {
+          allOrders = (response.data as List)
+              .map(
+                (i) => OrderModel.fromJson(i),
+              )
+              .toList();
+        }
       }
-      // }
     } on DioException catch (e) {
       throw 'Error $e';
     }
