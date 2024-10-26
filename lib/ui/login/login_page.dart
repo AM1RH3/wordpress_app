@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:woedpress_app/api/api_service.dart';
+import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
 import 'package:woedpress_app/ui/signup/signup_page.dart';
@@ -59,17 +61,18 @@ class _LoginPageState extends State<LoginPage> {
               isApiCalled = false;
             });
             if (retRes.success!) {
+              SharedService.setLoginDetails(retRes);
               CustomDialogBox.showMessage(
                 context,
                 'ورود موفق ',
                 'با موفقیت وارد شدید',
                 'بستن',
                 () {
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (BuildContext context) {
-                        return const RootPage();
-                      },
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                      child: const RootPage(),
+                      type: PageTransitionType.fade,
                     ),
                   );
                 },

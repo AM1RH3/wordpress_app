@@ -7,6 +7,7 @@ import 'package:woedpress_app/ui/login/login_page.dart';
 import 'package:woedpress_app/ui/profile/orders_page.dart';
 import 'package:woedpress_app/ui/profile/profile_widget.dart';
 import 'package:woedpress_app/constants/constants.dart';
+import 'package:woedpress_app/ui/root/root_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -131,7 +132,19 @@ class _RootPageState extends State<ProfilePage> {
                         BuildOptions(
                           title: 'خروج',
                           icon: Icons.logout,
-                          onPressed: () {},
+                          onPressed: () {
+                            SharedService.logOut().then(
+                              (value) {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    PageTransition(
+                                      child: const RootPage(),
+                                      type: PageTransitionType.fade,
+                                    ),
+                                    (route) => false);
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),

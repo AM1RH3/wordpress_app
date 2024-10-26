@@ -33,7 +33,7 @@ class CustomDialogBox {
                   message,
                   textAlign: TextAlign.justify,
                   style: const TextStyle(
-                    fontFamily: 'YekanBakh',
+                    fontFamily: 'Lalezar',
                     fontSize: 16.0,
                   ),
                 ),
@@ -44,7 +44,8 @@ class CustomDialogBox {
                   child: Text(
                     buttonText,
                     style: TextStyle(
-                      fontFamily: 'YekanBakh',
+                      fontSize: 16,
+                      fontFamily: 'Lalezar',
                       color: Constants.primaryColor,
                     ),
                   ),
