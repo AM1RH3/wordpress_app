@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:woedpress_app/constants/constants.dart';
 
-class BuildPamentOptions extends StatelessWidget {
+class BuildPaymentOptions extends StatelessWidget {
   final String paymentTitle;
   final String paymentDescription;
   final IconData icon;
-  const BuildPamentOptions({
+
+  const BuildPaymentOptions({
+    required this.icon,
     required this.paymentTitle,
     required this.paymentDescription,
-    required this.icon,
     super.key,
   });
 
@@ -23,20 +24,20 @@ class BuildPamentOptions extends StatelessWidget {
           color: Constants.primaryColor,
           size: 45.0,
         ),
+        // NABEGHEHA.COM
         title: Text(
           paymentTitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
-            fontFamily: 'Lalezar',
+            fontFamily: 'YekanBakh',
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           paymentDescription,
           style: const TextStyle(
-            fontFamily: 'Lalezar',
-            fontWeight: FontWeight.bold,
+            fontFamily: 'YekanBakh',
             fontSize: 14.0,
           ),
         ),
@@ -50,6 +51,7 @@ class BuildClickPaymentMethod extends StatelessWidget {
   final String paymentTitle;
   final String paymentDescription;
   final VoidCallback onPressed;
+
   const BuildClickPaymentMethod({
     required this.assetImageUrl,
     required this.paymentTitle,
@@ -69,6 +71,7 @@ class BuildClickPaymentMethod extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
+          // NABEGHEHA.COM
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
@@ -86,33 +89,34 @@ class BuildClickPaymentMethod extends StatelessWidget {
             ),
             const SizedBox(width: 15.0),
             Flexible(
-                child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        paymentTitle,
-                        style: const TextStyle(
-                          fontFamily: 'iranSans',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          paymentTitle,
+                          style: const TextStyle(
+                            fontFamily: 'iranSans',
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        paymentDescription,
-                        style: const TextStyle(
-                          fontFamily: 'iranSans',
-                          fontSize: 14.0,
+                        Text(
+                          paymentDescription,
+                          style: const TextStyle(
+                            fontFamily: 'iranSans',
+                            fontSize: 14.0,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ))
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -159,7 +159,7 @@ class _RootPageState extends State<HomePage> {
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           reverse: true,
-                          itemCount: value.productbyCategory.length,
+                          itemCount: value.productByCategory.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
@@ -167,7 +167,7 @@ class _RootPageState extends State<HomePage> {
                                   context,
                                   PageTransition(
                                     child: ProductDetail(
-                                      product: value.productbyCategory[index],
+                                      product: value.productByCategory[index],
                                     ),
                                     type: PageTransitionType.fade,
                                   ),
@@ -210,7 +210,7 @@ class _RootPageState extends State<HomePage> {
                                       top: 65.0,
                                       bottom: 65.0,
                                       child: Image.network(
-                                        value.productbyCategory[index]
+                                        value.productByCategory[index]
                                             .images![0].src
                                             .toString(),
                                         fit: BoxFit.cover,
@@ -231,7 +231,7 @@ class _RootPageState extends State<HomePage> {
                                                   20.0),
                                         ),
                                         child: Text(
-                                          '${numberFormat.format(int.parse(value.productbyCategory[index].price.toString()))} تومان'
+                                          '${numberFormat.format(int.parse(value.productByCategory[index].price.toString()))} تومان'
                                               .farsiNumber,
                                           textDirection: TextDirection.rtl,
                                           style: TextStyle(
@@ -251,7 +251,7 @@ class _RootPageState extends State<HomePage> {
                                             CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            value.productbyCategory[index]
+                                            value.productByCategory[index]
                                                 .categories![0].name
                                                 .toString(),
                                             style: const TextStyle(
@@ -261,7 +261,7 @@ class _RootPageState extends State<HomePage> {
                                             ),
                                           ),
                                           Text(
-                                            value.productbyCategory[index].name
+                                            value.productByCategory[index].name
                                                 .toString(),
                                             style: const TextStyle(
                                               fontFamily: 'Lalezar',

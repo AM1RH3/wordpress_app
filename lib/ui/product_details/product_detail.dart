@@ -237,7 +237,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         right: 9.0,
                         top: -4.0,
                         child: Provider.of<ShopProvider>(context, listen: true)
-                                    .iteminCart ==
+                                    .itemsinCart ==
                                 null
                             ? Text(
                                 '0'.farsiNumber,
@@ -248,7 +248,7 @@ class _ProductDetailState extends State<ProductDetail> {
                               )
                             : Text(
                                 Provider.of<ShopProvider>(context, listen: true)
-                                    .iteminCart!
+                                    .itemsinCart!
                                     .length
                                     .toString()
                                     .farsiNumber,

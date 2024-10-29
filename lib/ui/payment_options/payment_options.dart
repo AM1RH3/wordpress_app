@@ -1,176 +1,173 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' show NumberFormat;
 import 'package:provider/provider.dart';
+import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/constants/constants.dart';
+import 'package:woedpress_app/models/zarinpal/zarinpal_request_model.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/payment_options/payment_utils.dart';
+import 'package:woedpress_app/ui/payment_webview/zarinpal_webview.dart';
+import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
+// import 'package:wordpress_app/ui/payment_webview/payment_result/payment_result.dart';
 
 class PaymentOptions extends StatefulWidget {
   const PaymentOptions({super.key});
-
+// NABEGHEHA.COM
   @override
   State<PaymentOptions> createState() => _PaymentOptionsState();
 }
 
 class _PaymentOptionsState extends State<PaymentOptions> {
-  NumberFormat numberFormat = NumberFormat.decimalPattern('fa');
+  ZarinpalRequest? zarinpalRequest;
+  APIService? apiService;
+  late double totalAmount = context.read<ShopProvider>().totalAmount!;
+
+  @override
+  void initState() {
+    apiService = APIService();
+    zarinpalRequest = ZarinpalRequest();
+    super.initState();
+  }
+
+  Future<ZarinpalRequest?> getZarinpalAuthoriyCode(String totalAmount) async {
+    // NABEGHEHA.COM
+    return await apiService!.getAuthority(totalAmount);
+  }
+
+  zarinpalClick() async {
+    await getZarinpalAuthoriyCode(
+      totalAmount.toInt().toString(),
+    ).then(
+      (value) {
+        zarinpalRequest = value!;
+      },
+    );
+    String? authorityCode = zarinpalRequest!.data!.authority;
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (BuildContext context) => ZarinpalWebView(
+          authorityCode: authorityCode,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ShopProvider>(
-      builder: (context, cartModel, child) {
-        if (cartModel.customerDetailsModel!.id != null) {
-          return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              toolbarHeight: 90.0,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const BuildCustomAppBar(appBarTitle: 'روش پرداخت'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0.0,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          height: 80,
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+            color: Constants.primaryColor.withOpacity(0.3),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    //! X Button
-                    child: Container(
-                      height: 40.0,
-                      width: 40.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: Constants.primaryColor.withOpacity(0.15),
-                      ),
-                      child: Icon(
-                        Icons.close,
-                        color: Constants.primaryColor,
-                      ),
+                  SizedBox(
+                    height: 20.0,
+                    child: Image.asset('assets/images/PriceUnit-green.png'),
+                  ),
+                  const SizedBox(width: 5.0),
+                  Text(
+                    Constants.numberFormat.format(totalAmount).farsiNumber,
+                    style: TextStyle(
+                      fontFamily: 'Lalezar',
+                      color: Constants.primaryColor,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
-                  //! Register Text
-                  Text(
-                    'روش پرداخت',
-                    style: TextStyle(
-                      color: Constants.blackColor,
-                      fontFamily: 'Lalezar',
-                      fontSize: 24.0,
-                    ),
-                  )
                 ],
               ),
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0.0,
-            ),
-            bottomNavigationBar: BottomAppBar(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                height: 80.0,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  color: Constants.primaryColor.withOpacity(0.3),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 20.0,
-                          child:
-                              Image.asset('assets/images/PriceUnit-green.png'),
-                        ),
-                        const SizedBox(width: 5.0),
-                        Text(
-                          numberFormat
-                              .format(cartModel.totalAmount)
-                              .farsiNumber,
-                          style: TextStyle(
-                            fontFamily: 'Lalezar',
-                            color: Constants.primaryColor,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Text(
-                      textDirection: TextDirection.rtl,
-                      ': مبلغ نهایی ',
-                      style: TextStyle(
-                        fontFamily: 'Lalezar',
-                        fontSize: 25.0,
-                      ),
-                    ),
-                  ],
+              const Text(
+                textDirection: TextDirection.rtl,
+                'مبلغ نهایی',
+                style: TextStyle(
+                  fontFamily: 'Lalezar',
+                  fontSize: 25.0,
                 ),
               ),
-            ),
-            body: _formUI(),
-          );
-        }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-  }
-}
-
-Widget _formUI() {
-  return SingleChildScrollView(
-    child: Directionality(
-      textDirection: TextDirection.rtl,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: [
-            //! ONLINE PAYMENTS
-
-            const BuildPamentOptions(
-              icon: Icons.payment,
-              paymentTitle: 'پرداخت آنلاین',
-              paymentDescription: 'از روش های زیر یکی را انتخاب کنید',
-            ),
-            // Payment Methods
-            const SizedBox(height: 20.0),
-
-            // ZarinPal
-            BuildClickPaymentMethod(
-              paymentTitle: 'زرین پال',
-              paymentDescription: 'پرداخت آنلاین با درگاه زرین پال',
-              assetImageUrl: 'assets/images/zarin.png',
-              onPressed: () {},
-            ),
-            const SizedBox(height: 15.0),
-            // NextPay
-            BuildClickPaymentMethod(
-              paymentTitle: 'زرین پال',
-              paymentDescription: 'پرداخت آنلاین با درگاه زرین پال',
-              assetImageUrl: 'assets/images/zarin.png',
-              onPressed: () {},
-            ),
-            const SizedBox(height: 50.0),
-
-            //! OFFLINE PAYMENTS
-
-            const BuildPamentOptions(
-              icon: Icons.location_on,
-              paymentTitle: 'سایر روش های پرداخت',
-              paymentDescription: 'از روش های زیر یکی را انتخاب کنید',
-            ),
-            // Payment Methods
-            const SizedBox(height: 20.0),
-
-            // ZarinPal
-            BuildClickPaymentMethod(
-              paymentTitle: 'پرداخت در محل',
-              paymentDescription: 'پرداخت درب منزل با دستگاه کارتخوان',
-              assetImageUrl: 'assets/images/cod.png',
-              onPressed: () {},
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+      body: _formUI(),
+    );
+  }
+
+  Widget _formUI() {
+    return SingleChildScrollView(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              // ONLINE PAYMENTS
+              const BuildPaymentOptions(
+                icon: Icons.payment,
+                paymentTitle: 'پرداخت آنلاین',
+                paymentDescription: 'از روش‌های زیر یکی را انتخاب کنید',
+              ),
+              // PAYMENTS METHODS
+              const SizedBox(height: 10.0),
+              // ZARINPAL
+              BuildClickPaymentMethod(
+                assetImageUrl: 'assets/images/zarin.png',
+                onPressed: zarinpalClick,
+                paymentTitle: 'زرین پال',
+                paymentDescription: 'پرداخت آنلاین با درگــاه زرین پال',
+              ),
+              const SizedBox(height: 15.0),
+              // NEXTPAY
+              BuildClickPaymentMethod(
+                assetImageUrl: 'assets/images/nexpay.png',
+                onPressed: () {},
+                paymentTitle: 'نکست پی',
+                paymentDescription: 'پرداخت آنلاین با درگاه نکست پی',
+              ),
+              const SizedBox(height: 40.0),
+              // OFFLINE PAYMENTS
+              const BuildPaymentOptions(
+                icon: Icons.payments,
+                paymentTitle: 'پرداخت آفلاین',
+                paymentDescription: 'از روش‌های زیر یکی را انتخاب کنید',
+              ),
+              const SizedBox(height: 10.0),
+              // CASH ON DELEVERY
+              BuildClickPaymentMethod(
+                assetImageUrl: 'assets/images/cod.png',
+                onPressed: () {
+                  // Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(CupertinoPageRoute(
+                  //   builder: (context) {
+                  //     return const ZarinpalSuccess(
+                  //       refID: 555555555,
+                  //     );
+                  //   },
+                  // ), (route) => false);
+                },
+                paymentTitle: 'پرداخت در محل',
+                paymentDescription: 'پرداخت درب منزل با دستگاه کارت خوان',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

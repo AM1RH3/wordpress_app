@@ -47,7 +47,7 @@ class _CartPageState extends State<CartPage> {
                 );
               }
 
-              if (cartModel.iteminCart!.isNotEmpty) {
+              if (cartModel.itemsinCart!.isNotEmpty) {
                 return Scaffold(
                   body: Column(
                     children: [
@@ -58,7 +58,7 @@ class _CartPageState extends State<CartPage> {
                               top: 15.0, left: 15.0, right: 15.0),
                           child: ListView.builder(
                             physics: const BouncingScrollPhysics(),
-                            itemCount: cartModel.iteminCart!.length,
+                            itemCount: cartModel.itemsinCart!.length,
                             itemBuilder: (context, index) {
                               return Container(
                                 decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class _CartPageState extends State<CartPage> {
                                         Text(
                                           numberFormat.format(
                                             int.parse(
-                                              cartModel.iteminCart![index]
+                                              cartModel.itemsinCart![index]
                                                   .productRegularPrice
                                                   .toString(),
                                             ),
@@ -110,7 +110,7 @@ class _CartPageState extends State<CartPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              cartModel.iteminCart![index]
+                                              cartModel.itemsinCart![index]
                                                   .productName
                                                   .toString(),
                                               style: const TextStyle(
@@ -126,16 +126,16 @@ class _CartPageState extends State<CartPage> {
                                           maxNumber: 20,
                                           iconSize: 15.0,
                                           value: cartModel
-                                              .iteminCart![index].quantity!
+                                              .itemsinCart![index].quantity!
                                               .toInt(),
                                           onChanged: (value) {
-                                            if (cartModel.iteminCart![index]
+                                            if (cartModel.itemsinCart![index]
                                                     .quantity! >
                                                 0) {
                                               Provider.of<ShopProvider>(context,
                                                       listen: false)
                                                   .updateQty(
-                                                cartModel.iteminCart![index]
+                                                cartModel.itemsinCart![index]
                                                     .productId!,
                                                 value,
                                               );
@@ -143,7 +143,7 @@ class _CartPageState extends State<CartPage> {
                                               Provider.of<ShopProvider>(context,
                                                       listen: false)
                                                   .removeItem(
-                                                cartModel.iteminCart![index]
+                                                cartModel.itemsinCart![index]
                                                     .productId!,
                                               );
                                             }
@@ -177,7 +177,7 @@ class _CartPageState extends State<CartPage> {
                                             height: 60.0,
                                             child: Image.network(
                                               cartModel
-                                                  .iteminCart![index].thumbnail
+                                                  .itemsinCart![index].thumbnail
                                                   .toString(),
                                               fit: BoxFit.contain,
                                             ),

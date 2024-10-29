@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WoocommerceInfo {
   // CONSUMERKEY & CONSUM ERSECRET
@@ -26,6 +27,7 @@ class WoocommerceInfo {
 }
 
 class Constants {
+  static final NumberFormat numberFormat = NumberFormat.decimalPattern('fa');
   static Color primaryColor = const Color(0xFF296E48);
   static Color blackColor = Colors.black54;
 
@@ -38,4 +40,14 @@ class Constants {
   static String titleThree = "با یک گل بهار آغاز نمی شود، گل بکار";
   static String descriptionThree =
       "هر گلی نیاز داشته باشید در این اپلیکیشن پیدا می کنید";
+}
+
+class ZarinpalInfo {
+  static String zarinpalMerchId = 'af7551b1-3d35-49c6-a11f-6caaa9ee63b3';
+  static String zarinpalCallBackURL = 'http://am1rh3.ir/?i=1';
+  static String zarinpalRequestURL =
+      'https://sandbox.zarinpal.com/pg/v4/payment/request.json';
+  static const String zarinpalVerifyURL =
+      'https://api.zarinpal.com/pg/v4/payment/verify.json';
+  //todo maybe ↑SandBox
 }
