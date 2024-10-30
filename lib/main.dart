@@ -10,6 +10,7 @@ import 'package:woedpress_app/ui/product_details/product_detail.dart';
 import 'package:woedpress_app/ui/profile/orders_page.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
 
+
 void main() {
   runApp(const MainApp());
 }
