@@ -173,27 +173,28 @@ class _RootPageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 20.0),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Constants.primaryColor,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50.0,
-                        vertical: 12.0,
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Constants.primaryColor,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50.0,
+                      vertical: 12.0,
                     ),
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        PageTransition(
-                          child: const LoginPage(),
-                          type: PageTransitionType.fade,
-                        ),
-                        ModalRoute.withName('LoginPage'),
-                      );
-                    },
-                    child: const Text(
-                      'ورود به برنامه',
-                      style: TextStyle(fontFamily: 'iranSans', fontSize: 15.0),
-                    ))
+                  ),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      PageTransition(
+                        child: const LoginPage(),
+                        type: PageTransitionType.fade,
+                      ),
+                      ModalRoute.withName('LoginPage'),
+                    );
+                  },
+                  child: const Text(
+                    'ورود به برنامه',
+                    style: TextStyle(fontFamily: 'iranSans', fontSize: 15.0),
+                  ),
+                ),
               ],
             ),
           );

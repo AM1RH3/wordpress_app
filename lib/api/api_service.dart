@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:woedpress_app/constants/constants.dart';
+import 'package:woedpress_app/db/secure_db.dart';
 import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
@@ -13,6 +14,8 @@ import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
 import 'package:woedpress_app/models/wordpress/wordpress_post_model.dart';
+import 'package:woedpress_app/models/zarinpal/zainpal_verify_model.dart';
+import 'package:woedpress_app/models/zarinpal/zarinpal_request_model.dart';
 
 class APIService {
   Future<bool> createCustomer(CustomerModel model) async {
@@ -345,7 +348,88 @@ class APIService {
     return responseModel!;
   }
 
-  // order model on zarinpall movies
+  Future<ZarinpalRequest?> getAuthority(String amount) async {
+    String amountToRial = '${amount}0';
+    ZarinpalRequest? zarinpalRequestModel;
+
+    try {
+      String url =
+          "${ZarinpalInfo.zarinpalRequestURL}?merchant_id=${ZarinpalInfo.zarinpalMerchId}&amount=$amountToRial&description=پرداخت از طریق اپلیکیشن فلاتر&callback_url=${ZarinpalInfo.zarinpalCallBackURL}";
+
+      Response response = await Dio().post(
+        url,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+      );
+      if (response.statusCode == 200) {
+        zarinpalRequestModel = ZarinpalRequest.fromJson(response.data);
+      }
+    } on DioException catch (e) {
+      throw 'Error $e';
+    }
+    return zarinpalRequestModel;
+  }
+
+  Future<ZarinpalVerify?> verifyPayment(int? amount, String authority) async {
+    String amountToRial = '${amount}0';
+    ZarinpalVerify? zarinpalVerifyModel;
+
+    try {
+      String url =
+          '${ZarinpalInfo.zarinpalVerifyURL}?merchant_id=${ZarinpalInfo.zarinpalMerchId}&amount=$amountToRial&authority=$authority';
+      Response response = await Dio().post(
+        url,
+        options: Options(headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        zarinpalVerifyModel = ZarinpalVerify.fromJson(response.data);
+      }
+    } catch (e) {
+      if (e is DioException) {
+        if (e.response?.data == null) {
+          return ZarinpalVerify(errors: 'هیچ داده ایی دریافت نشد');
+        }
+        return ZarinpalVerify.fromJson(e.response?.data);
+      } else {
+        return ZarinpalVerify(errors: e.toString());
+      }
+    }
+    return zarinpalVerifyModel;
+  }
+
+  Future<bool> createOrder(OrderModel model) async {
+    LoginResponseModel? loginResponseModel =
+        await SecureSorageDB().loginDetails();
+    if (loginResponseModel?.data != null) {
+      int? userID = loginResponseModel?.data!.id;
+      model.customerId = userID;
+    }
+    bool isOrderCreated = false;
+    String authToken = base64.encode(utf8.encode(
+        "${WoocommerceInfo.consumersKey}:${WoocommerceInfo.consumerSecret}"));
+    try {
+      Response response =
+          await Dio().post(WoocommerceInfo.baseURL + WoocommerceInfo.orderURL,
+              data: model.toJson(),
+              options: Options(headers: {
+                HttpHeaders.contentTypeHeader: 'application/json',
+                HttpHeaders.authorizationHeader: 'Basic $authToken',
+              }));
+
+      if (response.statusCode == 200) {
+        isOrderCreated = true;
+      }
+    } on DioException catch (e) {
+      throw 'Error $e';
+    }
+    return isOrderCreated;
+  }
+
+  //! order model on zarinpall movies
   Future<List<OrderModel>> getAllOrders() async {
     List<OrderModel> allOrders = <OrderModel>[];
 

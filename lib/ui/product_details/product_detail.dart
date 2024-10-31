@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show NumberFormat;
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/providers/loader_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
+import 'package:woedpress_app/ui/cart/cart_page.dart';
 // import 'package:woedpress_app/ui/utils/custom_add_quantity.dart';
 import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
@@ -208,7 +210,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ],
           ),
           floatingActionButton: SizedBox(
-            width: size.width * 0.9,
+            width: 50,
             height: 50.0,
             child: Row(
               children: [
@@ -226,39 +228,52 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                     ],
                   ),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      const Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ),
-                      Positioned(
-                        right: 9.0,
-                        top: -4.0,
-                        child: Provider.of<ShopProvider>(context, listen: true)
-                                    .itemsinCart ==
-                                null
-                            ? Text(
-                                '0'.farsiNumber,
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontFamily: 'Lalezar',
-                                ),
-                              )
-                            : Text(
-                                Provider.of<ShopProvider>(context, listen: true)
-                                    .itemsinCart!
-                                    .length
-                                    .toString()
-                                    .farsiNumber,
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontFamily: 'Lalezar',
-                                ),
-                              ),
-                      ),
-                    ],
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) {
+                            return const CartPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const Icon(
+                          Icons.shopping_cart,
+                          color: Colors.white,
+                        ),
+                        Positioned(
+                          right: 9.0,
+                          top: -4.0,
+                          child:
+                              Provider.of<ShopProvider>(context, listen: true)
+                                          .itemsinCart ==
+                                      null
+                                  ? Text(
+                                      '0'.farsiNumber,
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        fontFamily: 'Lalezar',
+                                      ),
+                                    )
+                                  : Text(
+                                      Provider.of<ShopProvider>(context,
+                                              listen: true)
+                                          .itemsinCart!
+                                          .length
+                                          .toString()
+                                          .farsiNumber,
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        fontFamily: 'Lalezar',
+                                      ),
+                                    ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 // CustomQuantity(

@@ -6,6 +6,7 @@ import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/product_details/product_detail.dart';
+import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,6 +60,12 @@ class _RootPageState extends State<HomePage> {
         // }
 
         return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: const BuildCustomAppBar(appBarTitle: 'خانه'),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0.0,
+          ),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(

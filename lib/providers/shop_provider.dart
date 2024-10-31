@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:woedpress_app/api/api_service.dart';
+import 'package:woedpress_app/db/secure_db.dart';
 import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
+import 'package:woedpress_app/models/woocommerce/order_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/models/wordpress/wordpress_post_model.dart';
@@ -20,86 +22,74 @@ class ShopProvider with ChangeNotifier {
   bool isLoading = false;
   bool isLoadingPosts = false;
   bool isLoadingShippingDetails = false;
+  int selectedIndex = 0;
 
-  // For Store All-Products
-  // List<Product> _product = <Product>[];
-  // List<Product> get product => _product;
+  // for Store All Wordpress Posts
+  List<WordpressPosts> _wordpressPosts = <WordpressPosts>[];
+  List<WordpressPosts> get wordpressPosts => _wordpressPosts;
 
-  // for Store All-Wordpress Posts
-  List<WordpressPosts> _worpressPosts = <WordpressPosts>[];
-  List<WordpressPosts> get wordpressPosts => _worpressPosts;
+  // for Store All Category names
+  List<ProductCategory> _productCategory = <ProductCategory>[];
+  List<ProductCategory> get productCategory => _productCategory;
 
-  // for Store All-Category-Name's
-  List<ProductCategory> _prodictCategory = <ProductCategory>[];
-  List<ProductCategory> get productCategory => _prodictCategory;
-
-  // for Store products With Category name
-  List<Product> _prodictbyCategory = <Product>[];
-  List<Product> get productbyCategory => _prodictbyCategory;
+  // for Store Products with Category name
+  List<Product> _productByCategory = <Product>[];
+  List<Product> get productByCategory => _productByCategory;
 
   // items in shopping Cart
   List<CartItem>? _itemsinCart;
-  List<CartItem>? get iteminCart => _itemsinCart;
+  List<CartItem>? get itemsinCart => _itemsinCart;
 
+  // get Customer Details
   CustomerDetailsModel? _customerDetailsModel;
   CustomerDetailsModel? get customerDetailsModel => _customerDetailsModel;
 
-  // Sum of Items in ShopInCart
+  // create order
+  OrderModel? _orderModel;
+  OrderModel get orderModel => _orderModel!;
+
+  // check if order created or not
+  bool _isOrderCreated = false;
+  bool get isOrderCreated => _isOrderCreated;
+
+  // sum of items in the shopping Cart
   double? get totalRecords => _itemsinCart!.length.toDouble();
 
-  // Sum of Price in the Shop In Cart
+  // sum of price in the Shopping Cart
   double? get totalAmount => _itemsinCart != null
       ? _itemsinCart!.map<double?>((e) => e.lineSubtotal).reduce(
             (value, element) => value! + element!,
           )
       : 0;
-
-  //! *************************************************  << getAllWordpressPosts >>   *********************************************************
-
+// NABEGHEHA.COM
   Future<void> getAllWordpressPosts() async {
     isLoadingPosts = true;
     notifyListeners();
     final List<WordpressPosts> postResponse = await _apiService!.getPosts();
-    _worpressPosts = postResponse;
+    _wordpressPosts = postResponse;
     isLoadingPosts = false;
     notifyListeners();
   }
-
-  //! *************************************************  << getAllCategoryNames >>   *********************************************************
 
   Future<void> getAllCategoryNames() async {
     isLoading = true;
     notifyListeners();
     final List<ProductCategory> categoryResponse =
         await _apiService!.getProductCategory();
-    _prodictCategory = categoryResponse;
+    _productCategory = categoryResponse;
     isLoading = false;
     notifyListeners();
   }
-
-  // Future<void> getAllProducts() async {
-  //   isLoading = true;
-  //   notifyListeners();
-  //   final List<Product> response = await _apiService!.getProducts();
-  //   _product = response;
-  //   isLoading = false;
-  //   notifyListeners();
-  // }
-
-  //! *************************************************  << addToCart >>   *********************************************************
 
   Future<void> getProductsByCategory(String categoryID) async {
     isLoading = true;
     notifyListeners();
-    final List<Product> prodictbyCategoryResponse =
+    final List<Product> productByCategoryResponse =
         await _apiService!.getProductCategorybyID(categoryID);
-    _prodictbyCategory = prodictbyCategoryResponse;
+    _productByCategory = productByCategoryResponse;
     isLoading = false;
     notifyListeners();
   }
-
-  //! *************************************************  << addToCart >>   *********************************************************
-  //?   بر اساس اون اند پوینتی هست که خودمون کاستوم تو سی پنل به وردپرس اضافه کردیم  (php)
 
   Future<void> addToCart(CartProducts product, Function onCallBack) async {
     AddtoCartReqModel reqModel = AddtoCartReqModel();
@@ -112,7 +102,6 @@ class ShopProvider with ChangeNotifier {
         CartProducts(productId: element.productId, quantity: element.quantity),
       );
     }
-
     CartProducts? duplicatedProductID = reqModel.products!.firstWhereOrNull(
       (prod) => prod.productId == product.productId,
     );
@@ -122,24 +111,21 @@ class ShopProvider with ChangeNotifier {
     reqModel.products!.add(product);
 
     await _apiService!.addtoCart(reqModel).then(
-      (cartresmodel) {
-        if (cartresmodel.data != null) {
-          List<CartItem>? newCartResModel = cartresmodel.data;
+      (carResModel) {
+        if (carResModel.data != null) {
+          List<CartItem>? newCartResModel = carResModel.data;
           _itemsinCart = [];
           _itemsinCart!.addAll(newCartResModel!);
         }
-        onCallBack(cartresmodel);
+        onCallBack(carResModel);
         notifyListeners();
       },
     );
   }
 
-  //! *************************************************  << fetchCartItems >>   *********************************************************
-
+// NABEGHEHA.COM
   Future<void> fetchCartItems() async {
-    isLoading = true;
-    notifyListeners();
-    bool isLoggedin = await SharedService.isLoggedin();
+    bool isLoggedin = await SecureSorageDB().isLoggedin();
     if (_itemsinCart == null) initializeData();
     if (isLoggedin) {
       await _apiService?.getCartItems().then(
@@ -152,11 +138,7 @@ class ShopProvider with ChangeNotifier {
         },
       );
     }
-    isLoading = false;
-    notifyListeners();
   }
-
-  //! *************************************************  << updateQty >>   *********************************************************
 
   void updateQty(int productID, int newQty) {
     CartItem? isProductExist =
@@ -167,49 +149,69 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  //! *************************************************  << removeItem >>   *********************************************************
-
   void removeItem(int productID) {
     CartItem? isProductExist =
         _itemsinCart!.firstWhereOrNull((prd) => prd.productId == productID);
     if (isProductExist != null) {
-      iteminCart!.remove(isProductExist);
+      _itemsinCart!.remove(isProductExist);
     }
     notifyListeners();
   }
 
-  //! *************************************************  << fetchCartItems >>   *********************************************************
-
-  Future<void> updateCart(Function onCallBack) async {
+  Future<void> updateCart(Function onCallback) async {
     AddtoCartReqModel reqModel = AddtoCartReqModel();
     reqModel.products = <CartProducts>[];
 
     if (_itemsinCart == null) initializeData();
 
-    // ignore: avoid_function_literals_in_foreach_calls
-    _itemsinCart!.forEach((element) {
+    _itemsinCart?.forEach((element) {
       reqModel.products!.add(CartProducts(
         productId: element.productId,
         quantity: element.quantity,
       ));
     });
+
     await _apiService!.addtoCart(reqModel).then((cartResModel) {
       if (cartResModel.data != null) {
         List<CartItem>? newCartResModel = cartResModel.data;
         _itemsinCart = [];
         _itemsinCart!.addAll(newCartResModel!);
       }
-      onCallBack(cartResModel);
+      onCallback(cartResModel);
       notifyListeners();
     });
   }
 
-  fetchShippingDetails() async {
-    _customerDetailsModel ??= CustomerDetailsModel();
-    _customerDetailsModel = await _apiService?.getCustomerDetails();
-    notifyListeners();
+  Future<void> resetCart(Function onCallback) async {
+    AddtoCartReqModel reqModel = AddtoCartReqModel();
+    reqModel.products = <CartProducts>[];
+
+    if (_itemsinCart == null) initializeData();
+
+    _itemsinCart?.forEach((element) {
+      reqModel.products!.add(CartProducts(
+        productId: element.productId,
+        quantity: 0,
+      ));
+    });
+
+    await _apiService!.addtoCart(reqModel).then((cartResModel) {
+      if (cartResModel.data != null) {
+        List<CartItem>? newCartResModel = cartResModel.data;
+        _itemsinCart = [];
+        _itemsinCart!.addAll(newCartResModel!);
+      }
+      onCallback(cartResModel);
+      notifyListeners();
+    });
   }
 
+  Future<void> fetchShippingDetails() async {
+    _customerDetailsModel ??= CustomerDetailsModel();
+    _customerDetailsModel = await _apiService?.getCustomerDetails();
+  }
+
+// NABEGHEHA.COM
   updateCustomerDetails(CustomerDetailsModel customerDetailsModel) async {
     isLoadingShippingDetails = true;
     notifyListeners();
@@ -217,6 +219,44 @@ class ShopProvider with ChangeNotifier {
     _customerDetailsModel =
         await _apiService!.updateCustomerDetails(customerDetailsModel);
     isLoadingShippingDetails = false;
+    notifyListeners();
+  }
+
+  void createOrder() async {
+    _orderModel?.shipping ??= Shipping();
+    _orderModel?.billing ??= Billing();
+
+    if (customerDetailsModel?.shipping != null) {
+      _orderModel?.shipping = customerDetailsModel?.shipping;
+    }
+    if (customerDetailsModel?.billing != null) {
+      _orderModel?.billing = customerDetailsModel?.billing;
+    }
+
+    if (orderModel.lineItems == null) {
+      _orderModel?.lineItems = <LineItems>[];
+    }
+
+    itemsinCart?.forEach(
+      (element) {
+        _orderModel!.lineItems?.add(
+          LineItems(
+            productId: element.productId,
+            quantity: element.quantity,
+            variationId: element.variationId,
+          ),
+        );
+      },
+    );
+
+    await _apiService!.createOrder(orderModel).then((value) {
+      _isOrderCreated = true;
+      notifyListeners();
+    });
+  }
+
+  processOrder(OrderModel orderModel) {
+    _orderModel = orderModel;
     notifyListeners();
   }
 
