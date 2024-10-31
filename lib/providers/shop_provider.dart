@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/db/secure_db.dart';
-import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
