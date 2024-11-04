@@ -8,7 +8,8 @@ import 'package:woedpress_app/ui/catalog/catalog_page.dart';
 import 'package:woedpress_app/ui/home/home_page.dart';
 import 'package:woedpress_app/ui/product_details/product_detail.dart';
 import 'package:woedpress_app/ui/profile/orders_page.dart';
-import 'package:woedpress_app/ui/root/root_page.dart';
+
+import 'package:woedpress_app/ui/unauthorized/login_check.dart';
 
 void main() {
   runApp(const MainApp());
@@ -40,7 +41,7 @@ class MainApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: RootPage(),
+        home: LoginOrNot(),
       ),
     );
   }
