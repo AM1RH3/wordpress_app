@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+// import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/ui/cart/cart_page.dart';
 import 'package:woedpress_app/ui/catalog/catalog_page.dart';
@@ -15,8 +15,8 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  // final PersistentTabController _controller =
+  //     PersistentTabController(initialIndex: 0);
 
   // List<Plant> favorites = [];
   // List<Plant> myCart = [];
@@ -31,34 +31,34 @@ class _RootPageState extends State<RootPage> {
     ];
   }
 
-  List<PersistentBottomNavBarItem> _navBarItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: 'HOME',
-        activeColorPrimary: Constants.primaryColor,
-        inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.apps_rounded),
-        title: 'CATALOG',
-        activeColorPrimary: Constants.primaryColor,
-        inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.shopping_cart_outlined),
-        title: 'CART',
-        activeColorPrimary: Constants.primaryColor,
-        inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.person_3),
-        title: 'PROFILE',
-        activeColorPrimary: Constants.primaryColor,
-        inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
-      ),
-    ];
-  }
+  // List<PersistentBottomNavBarItem> _navBarItems() {
+  //   return [
+  //     PersistentBottomNavBarItem(
+  //       icon: const Icon(Icons.home),
+  //       title: 'HOME',
+  //       activeColorPrimary: Constants.primaryColor,
+  //       inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
+  //     ),
+  //     PersistentBottomNavBarItem(
+  //       icon: const Icon(Icons.apps_rounded),
+  //       title: 'CATALOG',
+  //       activeColorPrimary: Constants.primaryColor,
+  //       inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
+  //     ),
+  //     PersistentBottomNavBarItem(
+  //       icon: const Icon(Icons.shopping_cart_outlined),
+  //       title: 'CART',
+  //       activeColorPrimary: Constants.primaryColor,
+  //       inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
+  //     ),
+  //     PersistentBottomNavBarItem(
+  //       icon: const Icon(Icons.person_3),
+  //       title: 'PROFILE',
+  //       activeColorPrimary: Constants.primaryColor,
+  //       inactiveColorPrimary: Constants.blackColor.withOpacity(0.5),
+  //     ),
+  //   ];
+  // }
 
   List<String> appBarTitle = [
     'خانه',
@@ -76,28 +76,31 @@ class _RootPageState extends State<RootPage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
-      body: PersistentTabView(
-        context,
-        navBarHeight: 51,
-        controller: _controller,
-        screens: pages(),
-        items: _navBarItems(),
-        confineToSafeArea: true,
-        backgroundColor: Colors.white10, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardAppears:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white10,
-        ),
-        popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
-        navBarStyle:
-            NavBarStyle.style12, // Choose the nav bar style with this property.
+      body: const Center(
+        child: Text(''),
       ),
+      // PersistentTabView(
+      //   context,
+      //   navBarHeight: 51,
+      //   controller: _controller,
+      //   screens: pages(),
+      //   items: _navBarItems(),
+      //   confineToSafeArea: true,
+      //   backgroundColor: Colors.white10, // Default is Colors.white.
+      //   handleAndroidBackButtonPress: true, // Default is true.
+      //   resizeToAvoidBottomInset:
+      //       true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+      //   stateManagement: true, // Default is true.
+      //   hideNavigationBarWhenKeyboardAppears:
+      //       true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+      //   decoration: NavBarDecoration(
+      //     borderRadius: BorderRadius.circular(10.0),
+      //     colorBehindNavBar: Colors.white10,
+      //   ),
+      //   popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
+      //   navBarStyle:
+      //       NavBarStyle.style12, // Choose the nav bar style with this property.
+      // ),
     );
   }
 }
