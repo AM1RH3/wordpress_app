@@ -1,3 +1,4 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 // import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:woedpress_app/constants/constants.dart';
@@ -15,6 +16,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int bottomIndex = 0;
   // final PersistentTabController _controller =
   //     PersistentTabController(initialIndex: 0);
 
@@ -67,6 +69,13 @@ class _RootPageState extends State<RootPage> {
     'پروفایل',
   ];
 
+  List<IconData> iconList = [
+    Icons.home,
+    Icons.auto_awesome_mosaic_rounded,
+    Icons.shopping_bag_rounded,
+    Icons.person,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,10 +85,50 @@ class _RootPageState extends State<RootPage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
-      body: const Center(
-        child: Text(''),
+      body: IndexedStack(
+        index: bottomIndex,
+        children: pages(),
       ),
-      
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () {
+          // Navigator.push(
+          //   context,
+          //   PageTransition(
+          //       duration: const Duration(milliseconds: 300),
+          //       child: const ScanPage(),
+          //       type: PageTransitionType.bottomToTop),
+          // );
+        },
+        backgroundColor: Constants.primaryColor,
+        child: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.search),
+          autofocus: true,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        splashColor: Constants.primaryColor,
+        activeColor: Constants.primaryColor,
+        activeIndex: bottomIndex,
+        inactiveColor: Colors.black.withOpacity(0.5),
+        gapLocation: GapLocation.center,
+        icons: iconList,
+        notchSmoothness: NotchSmoothness.softEdge,
+        onTap: (index) {
+          setState(() {
+            bottomIndex = index;
+
+            // final List<Plant> favoritedPlants = Plant.getFavoritedPlants();
+            // final List<Plant> addedToCartPlants = Plant.addedToCartPlants();
+            // //! با تو (ست) کردن باعث میشه عضو های تکراری نتونن بیان
+            // favorites = favoritedPlants.toSet().toList();
+            // myCart = addedToCartPlants.toSet().toList();
+          });
+        },
+      ),
       // PersistentTabView(
       //   context,
       //   navBarHeight: 51,
