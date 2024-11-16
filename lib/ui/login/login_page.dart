@@ -28,11 +28,15 @@ class _LoginPageState extends State<LoginPage> {
 
   bool isApiCalled = false;
 
-  late TextEditingController email =
-      TextEditingController(text: customerModel.email);
+  late TextEditingController email = TextEditingController(
+    // text: customerModel.email, ◘ Defult ◘
+    text: 'asd@aa.com',
+  );
 
-  late TextEditingController password =
-      TextEditingController(text: customerModel.password);
+  late TextEditingController password = TextEditingController(
+    // text: customerModel.password, ◘ Defult ◘
+    text: '123',
+  );
 
   @override
   void initState() {
