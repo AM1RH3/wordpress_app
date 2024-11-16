@@ -8,6 +8,7 @@ import 'package:woedpress_app/providers/loader_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/login/login_page.dart';
 import 'package:woedpress_app/ui/utils/custom_add_quantity.dart';
+import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
 import 'package:woedpress_app/ui/verify_address/verify_address_page.dart';
 
@@ -49,6 +50,12 @@ class _CartPageState extends State<CartPage> {
 
               if (cartModel.itemsinCart!.isNotEmpty) {
                 return Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    title: const BuildCustomAppBar(appBarTitle: 'سبدخرید'),
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    elevation: 0.0,
+                  ),
                   body: Column(
                     children: [
                       Flexible(
@@ -316,25 +323,33 @@ class _CartPageState extends State<CartPage> {
                   ),
                 );
               } else {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: Image.asset('assets/images/add-cart.png'),
-                      ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'سبد خرید تار عنکبوت بسته است',
-                        style: TextStyle(
-                          fontFamily: 'Lalezar',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 20.0,
+                return Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    title: const BuildCustomAppBar(appBarTitle: 'سبد خرید'),
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    elevation: 0.0,
+                  ),
+                  body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 100,
+                          child: Image.asset('assets/images/add-cart.png'),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        const Text(
+                          'سبد خرید تار عنکبوت بسته است',
+                          style: TextStyle(
+                            fontFamily: 'Lalezar',
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }
