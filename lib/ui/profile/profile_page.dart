@@ -8,6 +8,7 @@ import 'package:woedpress_app/ui/profile/orders_page.dart';
 import 'package:woedpress_app/ui/profile/profile_widget.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
+import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -35,6 +36,12 @@ class _RootPageState extends State<ProfilePage> {
       builder: (BuildContext context, AsyncSnapshot<bool> loginModel) {
         if (loginModel.hasData && loginModel.data!) {
           return Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              title: const BuildCustomAppBar(appBarTitle: 'پروفایل'),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              elevation: 0.0,
+            ),
             body: Container(
               padding: const EdgeInsets.all(20.0),
               height: size.height,

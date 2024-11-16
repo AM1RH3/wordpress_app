@@ -76,10 +76,10 @@ class _RootPageState extends State<HomePage> {
                   child: Center(
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      width: size.width * 0.9,
+                      width: size.width * 0.93,
                       decoration: BoxDecoration(
                           color: Constants.primaryColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(25.0)),
+                          borderRadius: BorderRadius.circular(15.0)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -327,9 +327,15 @@ class _RootPageState extends State<HomePage> {
                                 height: 80.0,
                                 width: size.width,
                                 margin: const EdgeInsets.only(
-                                    bottom: 10.0, top: 10.0),
+                                  bottom: 10.0,
+                                  top: 10.0,
+                                ),
                                 padding: const EdgeInsets.only(
-                                    bottom: 10.0, top: 10.0),
+                                  bottom: 10.0,
+                                  top: 10.0,
+                                  right: 12.0,
+                                  left: 12.0,
+                                ),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
