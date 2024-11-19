@@ -14,7 +14,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int bottomIndex = 0;
+  // int bottomIndex = 0;
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
@@ -128,18 +128,51 @@ class _RootPageState extends State<RootPage> {
           //     });
           //   },
           // ),
+
+// PersistentTabView(
+//         context,
+//         navBarHeight: 51,
+//         controller: _controller,
+//         screens: pages(),
+//         items: _navBarItems(),
+//         confineToSafeArea: true,
+//         backgroundColor: Colors.white10, // Default is Colors.white.
+//         handleAndroidBackButtonPress: true, // Default is true.
+//         resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+//         stateManagement: true, // Default is true.
+//         hideNavigationBarWhenKeyboardAppears: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+//         decoration: NavBarDecoration(
+//           borderRadius: BorderRadius.circular(10.0),
+//           colorBehindNavBar: Colors.white10,
+
+//         ),
+
+//         : const ItemAnimationProperties(
+//           // Navigation Bar's items animation properties.
+//           duration: Duration(milliseconds: 200),
+//           curve: Curves.ease,
+//         ),
+//         screenTransitionAnimation: const ScreenTransitionAnimation(
+//           // Screen transition animation on change of selected tab.
+//           animateTabTransition: true,
+//           curve: Curves.ease,
+//           // NABEGHEHA.COM
+//           duration: Duration(milliseconds: 200),
+//         ),
+//         navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.
           PersistentTabView(
         context,
         navBarHeight: 51,
+
         controller: _controller,
         screens: pages(),
         items: _navBarItems(),
         confineToSafeArea: true,
-
+        padding: const EdgeInsets.only(bottom: 5),
         animationSettings: const NavBarAnimationSettings(
           navBarItemAnimation: ItemAnimationSettings(
             duration: Duration(
-              seconds: 1,
+              milliseconds: 500,
             ),
           ),
           screenTransitionAnimation: ScreenTransitionAnimationSettings(
@@ -148,6 +181,7 @@ class _RootPageState extends State<RootPage> {
             screenTransitionAnimationType: ScreenTransitionAnimationType.slide,
           ),
         ),
+
         backgroundColor: Colors.white10, // Default is Colors.white.
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
@@ -159,6 +193,7 @@ class _RootPageState extends State<RootPage> {
           borderRadius: BorderRadius.circular(10.0),
           colorBehindNavBar: Colors.white10,
         ),
+
         popBehaviorOnSelectedNavBarItemPress: PopBehavior.once,
         navBarStyle:
             NavBarStyle.style12, // Choose the nav bar style with this property.
