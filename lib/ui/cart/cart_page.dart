@@ -51,7 +51,7 @@ class _CartPageState extends State<CartPage> {
                   child: LoadingAnimationWidget.staggeredDotsWave(
                     color: Constants.primaryColor,
                     size: 50,
-                  ),
+                  ), 
                 );
                 // NABEGHEHA.COM
               } else if (cartModel.itemsinCart!.isEmpty) {
