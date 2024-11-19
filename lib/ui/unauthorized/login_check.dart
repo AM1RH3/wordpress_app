@@ -11,8 +11,19 @@ class LoginOrNot extends StatelessWidget {
     return FutureBuilder(
       future: SharedService.isLoggedin(),
       builder: (BuildContext context, AsyncSnapshot<bool> loginModel) {
-        if (loginModel.hasData && loginModel.data!) {
-          return const RootPage();
+        if (loginModel.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (loginModel.connectionState == ConnectionState.done) {
+          if (loginModel.hasData && loginModel.data!) {
+            return const RootPage();
+          } else {
+            return const LoginPage();
+          }
         } else {
           return const LoginPage();
         }
