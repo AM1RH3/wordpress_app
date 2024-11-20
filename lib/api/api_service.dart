@@ -2,31 +2,30 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/db/secure_db.dart';
-import 'package:woedpress_app/db/shared_pr_db.dart';
 import 'package:woedpress_app/models/woocommerce/addtocart_request_model.dart';
 import 'package:woedpress_app/models/woocommerce/cart_response_model.dart';
+import 'package:woedpress_app/models/woocommerce/order_model.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
 import 'package:woedpress_app/models/woocommerce/login_model.dart';
-import 'package:woedpress_app/models/woocommerce/order_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_category_model.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
 import 'package:woedpress_app/models/wordpress/wordpress_post_model.dart';
-import 'package:woedpress_app/models/zarinpal/zainpal_verify_model.dart';
 import 'package:woedpress_app/models/zarinpal/zarinpal_request_model.dart';
+import 'package:woedpress_app/models/zarinpal/zainpal_verify_model.dart';
 
+// NABEGHEHA.COM
 class APIService {
   Future<bool> createCustomer(CustomerModel model) async {
     bool returnResponse = false;
+    String authToken = base64.encode(utf8.encode(
+        "${WoocommerceInfo.consumersKey}:${WoocommerceInfo.consumerSecret}"));
 
-    String authToken = base64.encode(
-      utf8.encode(
-          "${WoocommerceInfo.consumersKey}:${WoocommerceInfo.consumerSecret}"),
-    );
     try {
-      var response = await Dio()
+      Response response = await Dio()
           .post(WoocommerceInfo.baseURL + WoocommerceInfo.customerURL,
               data: model.toJson(),
               options: Options(headers: {
@@ -36,8 +35,7 @@ class APIService {
       if (response.statusCode == 201) {
         returnResponse = true;
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
         returnResponse = false;
       } else {
@@ -51,30 +49,36 @@ class APIService {
     String username,
     String password,
   ) async {
-    late LoginResponseModel loginModel;
     try {
-      var responce = await Dio().post(
+      Response response = await Dio().post(
         WoocommerceInfo.tokenURL,
         data: {
           'username': username,
           'password': password,
         },
         options: Options(headers: {
-          HttpHeaders.contentTypeHeader: 'application/json',
+          HttpHeaders.contentTypeHeader: 'application/x-www-form-urlencoded',
         }),
       );
-      if (responce.statusCode == 200) {
-        loginModel = LoginResponseModel.fromJson(responce.data);
+      if (response.statusCode == 200) {
+        return LoginResponseModel.fromJson(response.data);
+      } else {
+        return LoginResponseModel(message: response.toString());
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
-      throw 'Error $e';
+    } catch (e) {
+      if (e is DioException) {
+        if (e.response?.data == null) {
+          return LoginResponseModel(message: 'هیچ داده ایی دریافت نشد');
+        }
+        return LoginResponseModel.fromJson(e.response?.data);
+      } else {
+        return LoginResponseModel(message: e.toString());
+      }
     }
-    return loginModel;
   }
 
   Future<List<Product>> getProducts() async {
-    final String productURL =
+    String productURL =
         "${WoocommerceInfo.baseURL}${WoocommerceInfo.productURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
     List<Product> productList = <Product>[];
 
@@ -99,7 +103,7 @@ class APIService {
   }
 
   Future<List<ProductCategory>> getProductCategory() async {
-    final String productCategoryURL =
+    String productCategoryURL =
         "${WoocommerceInfo.baseURL}${WoocommerceInfo.productCategoryURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
     List<ProductCategory> productCategoryList = <ProductCategory>[];
 
@@ -148,16 +152,19 @@ class APIService {
     return productCategoryList;
   }
 
-  Future<List<WordpressPosts>> getPosts() async {
-    final String postURL = WoocommerceInfo.baseURLPosts;
+// NABEGHEHA.COM
+  Future<List<WordpressPosts>> gePosts() async {
+    String postURL = WoocommerceInfo.baseURLPosts;
     List<WordpressPosts> postList = <WordpressPosts>[];
 
     try {
       Response response = await Dio().get(
         postURL,
-        options: Options(headers: {
-          HttpHeaders.contentTypeHeader: 'application/json',
-        }),
+        options: Options(
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+          },
+        ),
       );
       if (response.statusCode == 200) {
         postList = (response.data as List)
@@ -173,7 +180,8 @@ class APIService {
   }
 
   Future<AddtoCartResModel> addtoCart(AddtoCartReqModel model) async {
-    LoginResponseModel? loginResponseModel = await SharedService.loginDetails();
+    LoginResponseModel? loginResponseModel =
+        await SecureSorageDB().loginDetails();
     if (loginResponseModel?.data != null) {
       model.userId = loginResponseModel!.data!.id;
     }
@@ -190,9 +198,7 @@ class APIService {
       if (response.statusCode == 200) {
         responseModel = AddtoCartResModel.fromJson(response.data);
       }
-
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
         throw 'Error $e';
       }
@@ -258,14 +264,13 @@ class APIService {
 
   Future<AddtoCartResModel> getCartItems() async {
     late AddtoCartResModel responseModel;
-
     try {
       LoginResponseModel? loginResponseModel =
-          await SharedService.loginDetails();
+          await SecureSorageDB().loginDetails();
       if (loginResponseModel?.data != null) {
         int? userID = loginResponseModel!.data!.id;
         final String url =
-            "${WoocommerceInfo.baseURL}${WoocommerceInfo.cartURL}?user_id=$userID&?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
+            "${WoocommerceInfo.baseURL}${WoocommerceInfo.cartURL}?user_id=$userID&consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
         Response response = await Dio().get(
           url,
           options: Options(
@@ -278,8 +283,7 @@ class APIService {
           responseModel = AddtoCartResModel.fromJson(response.data);
         }
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw 'Error $e';
     }
     return responseModel;
@@ -290,10 +294,9 @@ class APIService {
 
     try {
       LoginResponseModel? loginResponseModel =
-          await SharedService.loginDetails();
+          await SecureSorageDB().loginDetails();
       if (loginResponseModel?.data != null) {
         int? userID = loginResponseModel!.data!.id;
-
         String url =
             "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
         Response response = await Dio().get(
@@ -308,8 +311,7 @@ class APIService {
           responseModel = CustomerDetailsModel.fromJson(response.data);
         }
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw 'Error $e';
     }
     return responseModel;
@@ -322,10 +324,9 @@ class APIService {
 
     try {
       LoginResponseModel? loginResponseModel =
-          await SharedService.loginDetails();
+          await SecureSorageDB().loginDetails();
       if (loginResponseModel?.data != null) {
         int? userID = loginResponseModel!.data!.id;
-
         String url =
             "${WoocommerceInfo.baseURL}${WoocommerceInfo.customerURL}/$userID?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}";
         Response response = await Dio().post(
@@ -341,8 +342,7 @@ class APIService {
           responseModel = CustomerDetailsModel.fromJson(response.data);
         }
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw 'Error $e';
     }
     return responseModel!;
@@ -429,20 +429,14 @@ class APIService {
     return isOrderCreated;
   }
 
-  //! order model on zarinpall movies
   Future<List<OrderModel>> getAllOrders() async {
     List<OrderModel> allOrders = <OrderModel>[];
 
     try {
-      // LoginResponseModel? loginResponseModel =
-      //     await SecureSorageDB().loginDetails();
-      // if (loginResponseModel?.data != null) {
-      //   int? userID = loginResponseModel?.data!.id;
       LoginResponseModel? loginResponseModel =
-          await SharedService.loginDetails();
+          await SecureSorageDB().loginDetails();
       if (loginResponseModel?.data != null) {
         int? userID = loginResponseModel?.data!.id;
-
         final String url =
             "${WoocommerceInfo.baseURL}${WoocommerceInfo.orderURL}?consumer_key=${WoocommerceInfo.consumersKey}&consumer_secret=${WoocommerceInfo.consumerSecret}&customer=$userID";
         Response response = await Dio().get(
