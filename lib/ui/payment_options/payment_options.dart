@@ -6,10 +6,10 @@ import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/models/zarinpal/zarinpal_request_model.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/payment_options/payment_utils.dart';
+import 'package:woedpress_app/ui/payment_webview/peyment_result.dart';
 import 'package:woedpress_app/ui/payment_webview/zarinpal_webview.dart';
 import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
-// import 'package:wordpress_app/ui/payment_webview/payment_result/payment_result.dart';
 
 class PaymentOptions extends StatefulWidget {
   const PaymentOptions({super.key});
@@ -153,13 +153,16 @@ class _PaymentOptionsState extends State<PaymentOptions> {
               BuildClickPaymentMethod(
                 assetImageUrl: 'assets/images/cod.png',
                 onPressed: () {
-                  // Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(CupertinoPageRoute(
-                  //   builder: (context) {
-                  //     return const ZarinpalSuccess(
-                  //       refID: 555555555,
-                  //     );
-                  //   },
-                  // ), (route) => false);
+                  //! for Test Success Transaction  ***
+                  Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                      CupertinoPageRoute(
+                    builder: (context) {
+                      return const ZarinpalSuccess(
+                        refID: 555555555,
+                      );
+                    },
+                  ), (route) => false);
+                  //! for Test Success Transaction ***
                 },
                 paymentTitle: 'پرداخت در محل',
                 paymentDescription: 'پرداخت درب منزل با دستگاه کارت خوان',
