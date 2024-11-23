@@ -22,6 +22,8 @@ dependencies:
   shamsi_date: ^1.0.4
   flutter_secure_storage: ^9.2.2
   persistent_bottom_nav_bar: ^6.2.1
+  flutter_native_splash: ^2.4.3
+  
 
 
 
@@ -30,6 +32,38 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  # flutter_launcher_icons: ^0.14.1
+  
+# flutter_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/icon/icon.png"
+#   adaptive_icon_background: "#111212"
+#   adaptive_icon_foreground: "assets/icon/icon.png"
+
+
+
+
+flutter_native_splash:
+  color: '#111212'
+  image: 'assets/images/splash.png'
+
+ 
+  android_12:
+    # The image parameter sets the splash screen icon image.  If this parameter is not specified,
+    # the app's launcher icon will be used instead.
+    # Please note that the splash screen will be clipped to a circle on the center of the screen.
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    # 768 pixels in diameter.  To fit a 1152x1152 image within a circle with a 768 diameter, simply 
+    # ensure that the most important design elements of your image are placed within a circular area
+    # with a 768 diameter at the center of the 1152x1152 canvas.
+    image: 'assets/images/splash.png'
+
+    # Splash screen background color.
+    color: "#111212"
+ 
 
 flutter:
   uses-material-design: true
