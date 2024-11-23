@@ -153,7 +153,7 @@ class APIService {
   }
 
 // NABEGHEHA.COM
-  Future<List<WordpressPosts>> gePosts() async {
+  Future<List<WordpressPosts>> getPosts() async {
     String postURL = WoocommerceInfo.baseURLPosts;
     List<WordpressPosts> postList = <WordpressPosts>[];
 

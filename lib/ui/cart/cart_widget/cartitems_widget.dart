@@ -70,7 +70,7 @@ class BuildCartItems extends StatelessWidget {
                                     .toString(),
                                 style: const TextStyle(
                                   fontSize: 13.0,
-                                  fontFamily: 'YekanBakh',
+                                  fontFamily: 'Lalezar',
                                 ),
                               ),
                               const SizedBox(width: 19.0),

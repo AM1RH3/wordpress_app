@@ -152,6 +152,7 @@ class _VerifyAddressState extends State<VerifyAddress> {
                         style: TextStyle(
                           fontFamily: 'Lalezar',
                           fontSize: 15.0,
+                          color: Colors.white,
                         ),
                       ),
                       onPressed: () {

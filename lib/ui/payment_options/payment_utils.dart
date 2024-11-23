@@ -30,14 +30,14 @@ class BuildPaymentOptions extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
-            fontFamily: 'YekanBakh',
+            fontFamily: 'Lalezar',
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           paymentDescription,
           style: const TextStyle(
-            fontFamily: 'YekanBakh',
+            fontFamily: 'Lalezar',
             fontSize: 14.0,
           ),
         ),

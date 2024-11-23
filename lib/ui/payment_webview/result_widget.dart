@@ -51,7 +51,7 @@ class PaymentResult extends StatelessWidget {
             "کد پیگیری تراکنش : $paymentRefID".farsiNumber,
             textDirection: TextDirection.rtl,
             style: const TextStyle(
-              fontFamily: 'YekanBakh',
+              fontFamily: 'Lalezar',
               fontSize: 18.0,
             ),
           ),
@@ -87,8 +87,9 @@ class PaymentResult extends StatelessWidget {
                 child: const Text(
                   'بازگشت به صفحه اصلی',
                   style: TextStyle(
-                    fontFamily: 'YekanBakh',
+                    fontFamily: 'Lalezar',
                     fontSize: 16.0,
+                    color: Colors.white,
                   ),
                 ),
               ),

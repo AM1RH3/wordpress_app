@@ -12,16 +12,23 @@ class LoginResponseModel {
     this.message,
     this.data,
   });
-
+// NABEGHEHA.COM
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     statusCode = json['statusCode'];
     code = json['code'];
     message = json['message'];
-    if (json['data'].toString().isNotEmpty) {
+    if (json['success'] == true) {
       data = Data.fromJson(json['data']);
     }
+
+    // OLD
+
+    // if (json['data'].toString().isNotEmpty) {
+    //   data = Data.fromJson(json['data']);
+    // }
   }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['success'] = success;
@@ -29,9 +36,15 @@ class LoginResponseModel {
     data['code'] = code;
     data['message'] = message;
 
-    if (this.data.toString().isNotEmpty) {
-      data['data'] = this.data!.toJson();
+    if (data['success'] == true) {
+      data['data'] = this.data?.toJson();
     }
+
+    // OLD
+
+    // if (this.data.toString().isNotEmpty) {
+    //   data['data'] = this.data!.toJson();
+    // }
     return data;
   }
 }
@@ -54,7 +67,7 @@ class Data {
     this.lastName,
     this.displayName,
   });
-
+// NABEGHEHA.COM
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     id = json['id'];

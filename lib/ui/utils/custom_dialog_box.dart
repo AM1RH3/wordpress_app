@@ -15,6 +15,7 @@ class CustomDialogBox {
       builder: (BuildContext context) {
         return Directionality(
           textDirection: TextDirection.rtl,
+          // ignore: deprecated_member_use
           child: WillPopScope(
             onWillPop: () async {
               return false;
@@ -35,7 +36,7 @@ class CustomDialogBox {
                   style: const TextStyle(
                     fontFamily: 'Lalezar',
                     fontSize: 16.0,
-                  ),
+                  ), 
                 ),
               ),
               actions: [

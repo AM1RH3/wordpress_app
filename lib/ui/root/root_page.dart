@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/ui/cart/cart_page.dart';
@@ -76,6 +77,7 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return Scaffold(
       // appBar: AppBar(
       //   automaticallyImplyLeading: false,

@@ -26,6 +26,7 @@ class BuildCustomButton extends StatelessWidget {
         style: const TextStyle(
           fontFamily: 'Lalezar',
           fontSize: 15.0,
+          color: Colors.white,
         ),
       ),
     );

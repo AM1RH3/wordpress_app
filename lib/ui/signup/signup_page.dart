@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/models/woocommerce/register_model.dart';
 import 'package:woedpress_app/ui/login/login_page.dart';
-import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/custom_button_widget.dart';
+import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 import 'package:woedpress_app/ui/utils/custom_dialog_box.dart';
 import 'package:woedpress_app/ui/utils/custom_form_field.dart';
 import 'package:woedpress_app/ui/utils/custom_waiting.dart';
@@ -20,7 +21,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   late APIService apiService;
   late CustomerModel customerModel;
-
+  // NABEGHEHA.COM
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
   bool isApiCalled = false;
@@ -31,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
       TextEditingController(text: customerModel.lastName);
   late TextEditingController email =
       TextEditingController(text: customerModel.email);
-
+  // NABEGHEHA.COM
   late TextEditingController password =
       TextEditingController(text: customerModel.password);
 
@@ -58,24 +59,24 @@ class _SignupPageState extends State<SignupPage> {
             });
             if (retRes) {
               CustomDialogBox.showMessage(
-                context, 'ثبت نام موفق',
+                // ignore: use_build_context_synchronously
+                context,
+                'ثبت نام موفق',
                 'ثبت نام شما با موفقیت انجام شد',
                 'بستن',
                 () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (BuildContext context) {
+                        return const LoginPage();
+                      },
+                    ),
+                  );
                 },
-                // () {
-                //    Navigator.of(context).push(
-                //     CupertinoPageRoute(
-                //       builder: (BuildContext context) {
-                //         return const LoginPage();
-                //       },
-                //     ),
-                //   );
-                // },
               );
             } else {
               CustomDialogBox.showMessage(
+                // ignore: use_build_context_synchronously
                 context,
                 'ثبت نام ناموفق',
                 'ایمیلی که استفاده کردید تکراری است',
@@ -129,6 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                         // FIRSTNAME
                         BuildCustomFormField(
                           controller: firstName,
+                          // NABEGHEHA.COM
                           labelName: 'نام',
                           onChanged: (value) {
                             customerModel.firstName = value;

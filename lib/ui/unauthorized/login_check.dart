@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:woedpress_app/db/shared_pr_db.dart';
+import 'package:woedpress_app/db/secure_db.dart';
 import 'package:woedpress_app/ui/login/login_page.dart';
 import 'package:woedpress_app/ui/root/root_page.dart';
 
@@ -9,20 +9,18 @@ class LoginOrNot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: SharedService.isLoggedin(),
+      future: SecureSorageDB().isLoggedin(),
       builder: (BuildContext context, AsyncSnapshot<bool> loginModel) {
+        // NABEGHEHA.COM
         if (loginModel.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return Container();
         }
         if (loginModel.connectionState == ConnectionState.done) {
           if (loginModel.hasData && loginModel.data!) {
             return const RootPage();
           } else {
             return const LoginPage();
+            // NABEGHEHA.COM
           }
         } else {
           return const LoginPage();

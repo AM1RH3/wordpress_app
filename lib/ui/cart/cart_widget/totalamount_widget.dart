@@ -35,7 +35,7 @@ class BuildTotalAmount extends StatelessWidget {
                         const Text(
                           'جمع کل',
                           style: TextStyle(
-                            fontFamily: 'YekanBakh',
+                            fontFamily: 'Lalezar',
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
                           ),

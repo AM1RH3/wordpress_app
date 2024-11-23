@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show ChangeNotifier;
 import 'package:woedpress_app/api/api_service.dart';
 import 'package:woedpress_app/models/woocommerce/product_model.dart';
-import 'package:woedpress_app/ui/catalog/sort_class.dart';
+import 'package:woedpress_app/ui/catalog/catalog_widget/sort_class.dart';
 
 enum DataStatus {
   initial,
@@ -15,7 +15,7 @@ class CatalogProvider with ChangeNotifier {
   late SortBy _sortBy;
   int page = 1;
 
-  int pageSize = 5;
+  int pageSize = 7;
   DataStatus _dataStatus = DataStatus.stable;
 
   List<Product> get allProduct => _productList;
