@@ -19,6 +19,14 @@ class BuildSearchBox extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           width: size.width * 0.9,
           decoration: BoxDecoration(
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.grey.withOpacity(0.2),
+            //     spreadRadius: 1,
+            //     blurRadius: 10,
+            //     offset: const Offset(0, 10),
+            //   ),
+            // ],
             color: Constants.primaryColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(20.0),
           ),
