@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/models/woocommerce/customer_details_model.dart';
@@ -156,12 +156,19 @@ class _VerifyAddressState extends State<VerifyAddress> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                              child: const PaymentOptions(),
-                              type: PageTransitionType.fade),
+                        Navigator.of(context, rootNavigator: true).push(
+                          CupertinoPageRoute(
+                            builder: (context) {
+                              return const PaymentOptions();
+                            },
+                          ),
                         );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //       child: const PaymentOptions(),
+                        //       type: PageTransitionType.fade),
+                        // );
                         // if (globalKey2.currentState!.validate()) {
                         //   Navigator.of(context).push(
                         //     CupertinoPageRoute(
