@@ -82,3 +82,6 @@ flutter:
     - family: YekanBakh
       fonts:
         - asset: assets/fonts/YekanBakh.ttf
+    - family: Vazir
+      fonts:
+        - asset: assets/fonts/Vazir.ttf
