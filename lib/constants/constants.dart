@@ -28,7 +28,7 @@ class WoocommerceInfo {
 
 class Constants {
   static final NumberFormat numberFormat = NumberFormat.decimalPattern('fa');
-  static Color primaryColor = const Color.fromARGB(255, 255, 160, 43);
+  static Color primaryColor = const Color.fromARGB(255, 18, 143, 200);
   static Color blackColor = Colors.black54;
 
   // static String titleOne = "گیاهان را بهتر از قبل درک کن";
