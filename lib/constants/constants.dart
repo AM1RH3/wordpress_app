@@ -28,18 +28,18 @@ class WoocommerceInfo {
 
 class Constants {
   static final NumberFormat numberFormat = NumberFormat.decimalPattern('fa');
-  static Color primaryColor = const Color(0xFF296E48);
+  static Color primaryColor = const Color.fromARGB(255, 255, 160, 43);
   static Color blackColor = Colors.black54;
 
-  static String titleOne = "گیاهان را بهتر از قبل درک کن";
-  static String descriptionOne =
-      "درمورد نگه داری گل و گیاهان میتوانی اطلاعات کسب کنی";
-  static String titleTwo = "با گیاهان جدید آشنا شو";
-  static String descriptionTwo =
-      "رز مشکی یا گل رز دوست داری ؟ اینجا میتونی پیداش کنی";
-  static String titleThree = "با یک گل بهار آغاز نمی شود، گل بکار";
-  static String descriptionThree =
-      "هر گلی نیاز داشته باشید در این اپلیکیشن پیدا می کنید";
+  // static String titleOne = "گیاهان را بهتر از قبل درک کن";
+  // static String descriptionOne =
+  //     "درمورد نگه داری گل و گیاهان میتوانی اطلاعات کسب کنی";
+  // static String titleTwo = "با گیاهان جدید آشنا شو";
+  // static String descriptionTwo =
+  //     "رز مشکی یا گل رز دوست داری ؟ اینجا میتونی پیداش کنی";
+  // static String titleThree = "با یک گل بهار آغاز نمی شود، گل بکار";
+  // static String descriptionThree =
+  //     "هر گلی نیاز داشته باشید در این اپلیکیشن پیدا می کنید";
 }
 
 class ZarinpalInfo {
