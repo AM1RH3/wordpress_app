@@ -13,13 +13,14 @@ class BuildCustomAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            color: Constants.blackColor,
-            Icons.notifications,
-            size: 30.0,
-          ),
+          // Icon(
+          //   color: Constants.blackColor,
+          //   Icons.favorite_outline,
+          //   size: 30.0,
+          // ),
           Text(
             appBarTitle,
             style: TextStyle(
@@ -44,31 +45,60 @@ class BuildCustomAppBar2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: const EdgeInsets.only(top: 30.0, bottom: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 3),
-            child: IconButton(
-              color: Constants.blackColor,
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                size: 27.0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                color: Constants.blackColor,
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  size: 27.0,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            ],
           ),
-          Text(
-            appBarTitle,
-            style: TextStyle(
-              color: Constants.blackColor,
-              fontFamily: 'Lalezar',
-              fontSize: 24.0,
-            ),
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                appBarTitle,
+                style: TextStyle(
+                  color: Constants.blackColor,
+                  fontFamily: 'Lalezar',
+                  fontSize: 24.0,
+                ),
+              ),
+              const SizedBox(width: 35),
+              IconButton(
+                color: Constants.blackColor,
+                icon: Icon(
+                  Icons.favorite_border,
+                  color: Colors.red[200],
+                  size: 27.0,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              IconButton(
+                color: Constants.blackColor,
+                icon: const Icon(
+                  Icons.more_vert_rounded,
+                  size: 27.0,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          )
         ],
       ),
     );
