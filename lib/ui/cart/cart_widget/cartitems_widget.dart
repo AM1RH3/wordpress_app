@@ -31,7 +31,11 @@ class BuildCartItems extends StatelessWidget {
                   height: 90.0,
                   width: size.width,
                   margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-                  padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                  padding: const EdgeInsets.only(
+                    left: 15.0,
+                    top: 10.0,
+                    right: 10.0,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

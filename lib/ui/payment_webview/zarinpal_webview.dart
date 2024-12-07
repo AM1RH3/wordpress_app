@@ -74,6 +74,7 @@ class _ZarinpalWebViewState extends State<ZarinpalWebView> {
             );
             if (!mounted) return;
             ShopProvider orderProvider =
+                // ignore: use_build_context_synchronously
                 Provider.of<ShopProvider>(context, listen: false);
             OrderModel orderModel = OrderModel();
             orderModel.paymentMethod = 'آنلاین';

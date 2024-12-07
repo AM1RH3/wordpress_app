@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:woedpress_app/constants/constants.dart';
 import 'package:woedpress_app/providers/loader_provider.dart';
 import 'package:woedpress_app/providers/shop_provider.dart';
-import 'package:woedpress_app/ui/home/home_page.dart';
+// import 'package:woedpress_app/ui/home/home_page.dart';
 import 'package:woedpress_app/ui/utils/extensions.dart';
 import 'package:woedpress_app/ui/verify_address/verify_address_page.dart';
 

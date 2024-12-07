@@ -60,7 +60,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const BuildCustomAppBar(appBarTitle: 'روش پرداخت'),
+        title: const BuildCustomAppBar3(appBarTitle: 'روش پرداخت'),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
@@ -70,6 +70,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
           height: 80,
           width: double.maxFinite,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
             color: Constants.primaryColor.withOpacity(0.3),
           ),
           child: Row(
@@ -96,7 +97,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
               ),
               const Text(
                 textDirection: TextDirection.rtl,
-                'مبلغ نهایی',
+                'مبلغ نهایی : ',
                 style: TextStyle(
                   fontFamily: 'Lalezar',
                   fontSize: 25.0,
@@ -125,7 +126,8 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                 paymentDescription: 'از روش‌های زیر یکی را انتخاب کنید',
               ),
               // PAYMENTS METHODS
-              const SizedBox(height: 10.0),
+              const Divider(),
+              // const SizedBox(height: 10.0),
               // ZARINPAL
               BuildClickPaymentMethod(
                 assetImageUrl: 'assets/images/zarin.png',
@@ -148,7 +150,8 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                 paymentTitle: 'پرداخت آفلاین',
                 paymentDescription: 'از روش‌های زیر یکی را انتخاب کنید',
               ),
-              const SizedBox(height: 10.0),
+              const Divider(),
+              // const SizedBox(height: 10.0),
               // CASH ON DELEVERY
               BuildClickPaymentMethod(
                 assetImageUrl: 'assets/images/cod.png',
@@ -158,7 +161,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                       CupertinoPageRoute(
                     builder: (context) {
                       return const ZarinpalSuccess(
-                        refID: 555555555,
+                        refID: 30058,
                       );
                     },
                   ), (route) => false);

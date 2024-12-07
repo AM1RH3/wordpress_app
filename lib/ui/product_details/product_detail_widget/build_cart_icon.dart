@@ -16,7 +16,7 @@ class BuildCartIcon extends StatelessWidget {
       height: 50.0,
       width: 50.0,
       decoration: BoxDecoration(
-        color: Constants.primaryColor.withOpacity(0.5),
+        color: Constants.primaryColor.withOpacity(0.7),
         borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(

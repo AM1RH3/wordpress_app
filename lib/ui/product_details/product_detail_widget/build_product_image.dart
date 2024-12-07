@@ -10,13 +10,17 @@ class BuildProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Positioned(
-      top: -60.0,
-      left: -20.0,
+      bottom: size.height * 0.43,
+      top: 10.0,
+      left: 5.0,
+      right: 5.0,
       child: SizedBox(
         height: 350.0,
         child: Image.network(
           '$productImage',
+          fit: BoxFit.fitHeight,
         ),
       ),
     );

@@ -7,11 +7,11 @@ class BuildOptions extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const BuildOptions({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     this.onPressed,
-  }) : super(key: key);
+  });
   // NABEGHEHA.COM
 
   @override

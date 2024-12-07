@@ -16,14 +16,14 @@ class BuildPaymentOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
-        leading: Icon(
-          icon,
-          color: Constants.primaryColor,
-          size: 45.0,
-        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+        // leading: Icon(
+        //   icon,
+        //   color: Constants.primaryColor,
+        //   size: 45.0,
+        // ),
         // NABEGHEHA.COM
         title: Text(
           paymentTitle,

@@ -8,26 +8,30 @@ class BuildProductFeatures extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Positioned(
       // NABEGHEHA.COM
-      top: 10.0,
+      top: 0.0,
       right: 0.0,
       child: SizedBox(
-        height: 200.0,
+        // height: 20.0,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ProductFeature(
-              title: 'مدرس',
-              feature: 'امیرحسین معلمی',
+              title: ':رنگ های موجود',
+              feature: '▮',
+              pColor1: Colors.black,
+              pColor2: Colors.red,
+              pColor3: Colors.green,
             ),
-            ProductFeature(
-              title: 'پیشنیاز',
-              feature: 'ندارد',
-            ),
-            ProductFeature(
-              title: 'سطح',
-              feature: 'پیشرفته',
-            ),
+
+            // ProductFeature(
+            //   title: 'dfgdg',
+            //   feature: 'dfg',
+            // ),
+            // ProductFeature(
+            //   title: 'dfg',
+            //   feature: 'dfgd',
+            // ),
           ],
         ),
       ),

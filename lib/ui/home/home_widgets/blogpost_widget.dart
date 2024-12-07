@@ -16,7 +16,7 @@ class BuildBlogPost extends StatelessWidget {
     return Consumer<ShopProvider>(
       builder: (context, value, child) {
         return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           height: size.height * 0.3,
           child: value.isLoadingPosts
               ? Center(
@@ -26,6 +26,7 @@ class BuildBlogPost extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   itemCount: value.wordpressPosts.length,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
@@ -33,7 +34,17 @@ class BuildBlogPost extends StatelessWidget {
                       onTap: () {},
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Constants.primaryColor.withOpacity(0.1),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
+                          color: const Color.fromARGB(255, 254, 247, 255)
+                          // .withOpacity(0.05)
+                          ,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         height: 80.0,
@@ -52,12 +63,15 @@ class BuildBlogPost extends StatelessWidget {
                             Row(
                               children: [
                                 const SizedBox(width: 5.0),
-                                Text(
-                                  "کلیک کنید",
-                                  style: TextStyle(
-                                    fontFamily: 'Lalezar',
-                                    color: Constants.primaryColor,
-                                    fontSize: 20.0,
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "مشاهده",
+                                    style: TextStyle(
+                                      fontFamily: 'Lalezar',
+                                      color: Constants.primaryColor,
+                                      fontSize: 20.0,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -70,7 +84,7 @@ class BuildBlogPost extends StatelessWidget {
                                   height: 60.0,
                                   decoration: BoxDecoration(
                                     color:
-                                        Constants.primaryColor.withOpacity(0.8),
+                                        Constants.primaryColor.withOpacity(0.7),
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -82,7 +96,7 @@ class BuildBlogPost extends StatelessWidget {
                                   child: SizedBox(
                                     height: 80.0,
                                     child: Icon(
-                                      Icons.article,
+                                      Icons.whatshot_outlined,
                                       size: 33.0,
                                       color: Colors.white,
                                     ),
@@ -98,16 +112,20 @@ class BuildBlogPost extends StatelessWidget {
                                         // inja
                                         value.wordpressPosts[index].title
                                             .toString(),
-                                        style: const TextStyle(
-                                          fontSize: 13.0,
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                          fontSize: 18.0,
                                           fontFamily: 'Lalezar',
+                                          color: Constants.primaryColor,
                                         ),
                                       ),
                                       Text(
                                         // inja
-                                        'پست وبلاگ',
+                                        value.wordpressPosts[index].content
+                                            .toString(),
+                                        textDirection: TextDirection.rtl,
                                         style: TextStyle(
-                                          fontSize: 18.0,
+                                          fontSize: 16.0,
                                           fontFamily: 'Lalezar',
                                           color: Constants.blackColor,
                                         ),

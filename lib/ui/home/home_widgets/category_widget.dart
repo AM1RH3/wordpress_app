@@ -13,12 +13,12 @@ class BuildCategory extends StatelessWidget {
   });
 
   final List<Categories> productsCategoryNames = <Categories>[
-    Categories(orderId: 1, id: 16, name: '|دسته بندی نشده|'),
-    Categories(orderId: 1, id: 20, name: '| برنامه‌نویسی |'),
-    Categories(orderId: 2, id: 22, name: '| امنیت |'),
-    Categories(orderId: 3, id: 24, name: '| شبکه |'),
-    Categories(orderId: 4, id: 21, name: '| لینوکس |'),
-    Categories(orderId: 5, id: 19, name: '| آموزشی |'),
+    // Categories(orderId: 5, id: 24, name: '| کلاسیک |'),
+    Categories(orderId: 4, id: 32, name: '| لپ تاپ |'),
+    Categories(orderId: 0, id: 16, name: '| ترندترین ها |'),
+    Categories(orderId: 1, id: 28, name: '| جدیدترین ها |'),
+    Categories(orderId: 2, id: 30, name: '| موبایل |'),
+    Categories(orderId: 3, id: 29, name: '| گجت ها |'),
   ];
 
   @override

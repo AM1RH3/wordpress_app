@@ -8,20 +8,20 @@ class BuildStarScore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(
           Icons.star,
           size: 30.0,
           // NABEGHEHA.COM
-          color: Constants.primaryColor,
+          color: Colors.amber[600],
         ),
         Text(
           '4.9'.farsiNumber,
           style: TextStyle(
             fontFamily: 'Lalezar',
-            color: Constants.primaryColor,
-            fontSize: 23.0,
+            color: Constants.blackColor,
+            fontSize: 24.0,
           ),
         ),
       ],

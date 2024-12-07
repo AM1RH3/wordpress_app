@@ -28,6 +28,7 @@ class _CatalogPageState extends State<CatalogPage> {
   void initState() {
     Future.delayed(Duration.zero, () async {
       CatalogProvider productList =
+          // ignore: use_build_context_synchronously
           Provider.of<CatalogProvider>(context, listen: false);
       productList.initializeData();
       productList.setLoadingState(DataStatus.initial);

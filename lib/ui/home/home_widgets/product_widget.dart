@@ -29,6 +29,7 @@ class BuildProduct extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   itemCount: value.productByCategory.length,
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
@@ -48,11 +49,24 @@ class BuildProduct extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: 220.0,
+                        width: 280.0,
                         margin: const EdgeInsets.symmetric(horizontal: 18.0),
                         decoration: BoxDecoration(
-                          color: Constants.primaryColor.withOpacity(0.8),
+                          border: Border.all(
+                            color: Constants.primaryColor,
+                            width: 1.5,
+                          ),
+                          // color: Constants.primaryColor.withOpacity(0.8),
+                          color: const Color.fromARGB(255, 254, 247, 255),
                           borderRadius: BorderRadius.circular(20.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 0.5,
+                              blurRadius: 10,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
                         ),
                         child: Stack(
                           children: [
@@ -64,7 +78,7 @@ class BuildProduct extends StatelessWidget {
                                 width: 40.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(80.0),
                                 ),
                                 child: IconButton(
                                   onPressed: () {},
@@ -84,7 +98,7 @@ class BuildProduct extends StatelessWidget {
                               //inja
                               child: Image.network(
                                 '${value.productByCategory[index].images?[0].src}',
-                                fit: BoxFit.cover,
+                                fit: BoxFit.contain,
                               ),
                             ),
                             Positioned(
@@ -94,7 +108,7 @@ class BuildProduct extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0, vertical: 2.0),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.white10,
                                   borderRadius: BorderRadius.circular(
                                     20.0,
                                   ),
@@ -123,25 +137,26 @@ class BuildProduct extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text(
-                                    // inja
-                                    value.productByCategory[index]
-                                        .categories![0].name
-                                        .toString(),
-                                    style: const TextStyle(
-                                      fontFamily: 'Lalezar',
-                                      color: Colors.white70,
-                                      fontSize: 14.0,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   // inja
+                                  //   value.productByCategory[index]
+                                  //       .categories![0].name
+                                  //       .toString(),
+                                  //   style: const TextStyle(
+                                  //     fontFamily: 'Lalezar',
+                                  //     color: Colors.black87,
+                                  //     fontSize: 14.0,
+                                  //   ),
+                                  // ),
                                   Text(
                                     // inja
                                     value.productByCategory[index].name
                                         .toString(),
+                                    textDirection: TextDirection.rtl,
                                     style: const TextStyle(
                                       fontFamily: 'Lalezar',
                                       // NABEGHEHA.COM
-                                      color: Colors.white70,
+                                      color: Colors.black87,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold,
                                     ),

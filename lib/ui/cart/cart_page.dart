@@ -22,6 +22,7 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     Future.delayed(Duration.zero).then((value) {
       ShopProvider cartItemsList =
+          // ignore: use_build_context_synchronously
           Provider.of<ShopProvider>(context, listen: false);
       cartItemsList.initializeData();
       cartItemsList.fetchCartItems();

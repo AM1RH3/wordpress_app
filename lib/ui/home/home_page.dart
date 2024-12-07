@@ -21,8 +21,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     Future.delayed(Duration.zero).then((value) {
       ShopProvider shopProvider =
+          // ignore: use_build_context_synchronously
           Provider.of<ShopProvider>(context, listen: false);
-      shopProvider.getProductsByCategory('20');
+      shopProvider.getProductsByCategory('16');
       shopProvider.getAllCategoryNames();
       shopProvider.getAllWordpressPosts();
     });

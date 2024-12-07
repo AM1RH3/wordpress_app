@@ -237,7 +237,7 @@ class _VerifyAddressState extends State<VerifyAddress> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const BuildCustomAppBar2(
+        title: const BuildCustomAppBar3(
           appBarTitle: 'تکمیل اطلاعات',
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

@@ -26,11 +26,11 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 // NABEGHEHA.COM
   TextEditingController email = TextEditingController(
-    text: 'am1rh3@hotmail.com',
-  );
+      // text: 'am1rh3@hotmail.com',
+      );
   TextEditingController password = TextEditingController(
-    text: 'admin',
-  );
+      // text: 'admin',
+      );
 
   bool isApiCalled = false;
 
@@ -127,66 +127,72 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            left: 50.0,
-            right: 0,
-            child: Image.asset(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          children: [
+            Image.asset(
               'assets/images/login_page.png',
             ),
-          ),
-          Positioned(
-            top: 250.0,
-            left: 20.0,
-            right: 20.0,
-            child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: SizedBox(
-                width: size.width * 0.8,
-                height: size.height * 0.8,
-                child: Form(
-                  key: globalKey,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 30.0),
-                        BuildCustomFormField(
-                          labelName: 'ایمیل',
-                          controller: email,
-                          formFieldtextDirection: TextDirection.ltr,
-                          validator: CustomValidator.emailValidator,
+            SizedBox(
+              height: size.height * 0.5,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: SizedBox(
+                      width: size.width * 0.9,
+                      // height: size.height * 0.9,
+                      child: Form(
+                        key: globalKey,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 30.0),
+                              BuildCustomFormField(
+                                labelName: 'ایمیل',
+                                controller: email,
+                                formFieldtextDirection: TextDirection.ltr,
+                                validator: CustomValidator.emailValidator,
+                              ),
+                              const SizedBox(height: 30.0),
+                              BuildCustomFormField(
+                                labelName: 'پسورد',
+                                controller: password,
+                                formFieldtextDirection: TextDirection.ltr,
+                                validator: CustomValidator.passwordValidator,
+                              ),
+                              const SizedBox(height: 30.0),
+                              Row(
+                                children: [
+                                  BuildCustomButton(
+                                      title: 'ورود', onPressed: loginButton),
+                                  const SizedBox(width: 20.0),
+                                  BuildCustomButton(
+                                      title: 'اکانت ندارید؟',
+                                      onPressed: navigatetoSignUp),
+                                ],
+                              ),
+                              // NABEGHEHA.COM
+                              const SizedBox(height: 30.0),
+                              isApiCalled
+                                  ? const CustomWaiting()
+                                  : const Text(''),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 30.0),
-                        BuildCustomFormField(
-                          labelName: 'پسورد',
-                          controller: password,
-                          formFieldtextDirection: TextDirection.ltr,
-                          validator: CustomValidator.passwordValidator,
-                        ),
-                        const SizedBox(height: 30.0),
-                        Row(
-                          children: [
-                            BuildCustomButton(
-                                title: 'ورود', onPressed: loginButton),
-                            const SizedBox(width: 20.0),
-                            BuildCustomButton(
-                                title: 'اکانت ندارید؟',
-                                onPressed: navigatetoSignUp),
-                          ],
-                        ),
-                        // NABEGHEHA.COM
-                        const SizedBox(height: 30.0),
-                        isApiCalled ? const CustomWaiting() : const Text(''),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

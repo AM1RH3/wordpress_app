@@ -17,7 +17,7 @@ extension ExtString on String {
       caseSensitive: true,
     );
     String text = this;
-    return text.replaceAll(exp, '');
+    return text.replaceAll(exp, '\n');
   }
 }
 

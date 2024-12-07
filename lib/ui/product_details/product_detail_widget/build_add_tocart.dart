@@ -25,7 +25,7 @@ class BuildAddtoCart extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Constants.primaryColor,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
               offset: const Offset(0.0, 1.1),
