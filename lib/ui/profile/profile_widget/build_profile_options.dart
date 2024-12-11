@@ -24,7 +24,7 @@ class BuildProfileOptions extends StatelessWidget {
           const BuildOptions(title: 'پروفایل من', icon: Icons.person),
           BuildOptions(
             title: 'سفارشات من',
-            icon: Icons.settings,
+            icon: Icons.shopping_cart_rounded,
             onPressed: () {
               Navigator.of(context).push(
                 CupertinoPageRoute(
@@ -35,12 +35,10 @@ class BuildProfileOptions extends StatelessWidget {
               );
             },
           ),
-          const BuildOptions(
-              title: 'اطلاع رسانی‌ها', icon: Icons.notifications),
-          const BuildOptions(
-              title: 'شبکه‌های اجتماعی', icon: Icons.share_rounded),
+          const BuildOptions(title: 'علاقه مندی ها', icon: Icons.favorite),
+          const BuildOptions(title: 'ارتباط با ما', icon: Icons.share_rounded),
           BuildOptions(
-            title: 'خروج',
+            title: ' خروج از حساب',
             icon: Icons.logout,
             onPressed: () {
               SecureSorageDB().logOut().then(
