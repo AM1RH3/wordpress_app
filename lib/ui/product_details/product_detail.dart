@@ -46,20 +46,19 @@ class _ProductDetailState extends State<ProductDetail> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: size.height * 0.999,
-          width: size.width,
+          height: 1200,
           child: Stack(
             children: [
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
-                child: Expanded(
+                child: Flexible(
                   child: Container(
                     padding: const EdgeInsets.only(
                         top: 55.0, left: 30.0, right: 30.0),
-                    height: size.height * 0.7,
-                    width: size.width,
+                    height: 880,
+                    // width: size.width,
                     // NABEGHEHA.COM
                     decoration: BoxDecoration(
                       color: Constants.primaryColor.withOpacity(0.15),
@@ -120,8 +119,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 left: 20.0,
                 right: 20.0,
                 child: Container(
-                  width: size.width * 0.8,
-                  height: size.height * 0.8,
+                  width: 600,
+                  height: 800,
                   padding: const EdgeInsets.all(20.0),
                   child: Stack(
                     children: [
