@@ -25,12 +25,8 @@ class _LoginPageState extends State<LoginPage> {
   late CustomerModel customerModel;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 // NABEGHEHA.COM
-  TextEditingController email = TextEditingController(
-      // text: 'am1rh3@hotmail.com',
-      );
-  TextEditingController password = TextEditingController(
-      // text: 'admin',
-      );
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   bool isApiCalled = false;
 
