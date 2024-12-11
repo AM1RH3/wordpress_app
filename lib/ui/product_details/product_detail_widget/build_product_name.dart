@@ -19,6 +19,7 @@ class BuildProductName extends StatelessWidget {
         color: Constants.blackColor,
         fontWeight: FontWeight.bold,
         fontSize: 30.0,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

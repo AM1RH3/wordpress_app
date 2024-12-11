@@ -20,7 +20,7 @@ class BuildProductImage extends StatelessWidget {
         height: 350.0,
         child: Image.network(
           '$productImage',
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.contain,
         ),
       ),
     );

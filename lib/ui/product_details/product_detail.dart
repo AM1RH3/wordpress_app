@@ -8,7 +8,6 @@ import 'package:woedpress_app/providers/shop_provider.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_add_tocart.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_cart_icon.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_product_description.dart';
-// import 'package:woedpress_app/ui/product_details/product_detail_widget/build_product_features.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_product_image.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_product_name.dart';
 import 'package:woedpress_app/ui/product_details/product_detail_widget/build_product_price.dart';
@@ -44,106 +43,97 @@ class _ProductDetailState extends State<ProductDetail> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: 1200,
-          child: Stack(
-            children: [
-              Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
-                child: Flexible(
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 55.0, left: 30.0, right: 30.0),
-                    height: 880,
-                    // width: size.width,
-                    // NABEGHEHA.COM
-                    decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(0.15),
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        topLeft: Radius.circular(30.0),
-                      ),
-                    ),
-                    child: SizedBox(
-                      child: Column(
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Container(
+              padding:
+                  const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
+              height: size.height * 0.55,
+              width: size.width,
+              // NABEGHEHA.COM
+              decoration: BoxDecoration(
+                color: Constants.primaryColor.withOpacity(0.2),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(30.0),
+                  topLeft: Radius.circular(30.0),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    textDirection: TextDirection.ltr,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+// Star
+                      const BuildStarScore(),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           // PRODUCT NAME
                           BuildProductName(productname: widget.product?.name),
-                          const SizedBox(height: 20.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  BuildProductPrice(
-                                      productPrice: '${widget.product?.price}'),
-                                  // PRODUCT PRICE
-                                ],
-                              ),
-                              // Star
-                              const BuildStarScore(),
-                            ],
-                          ),
-                          // Product Description
-                          const SizedBox(height: 15.0),
-                          BuildProductDescription(
-                            productDescription: widget.product?.description,
-                          ),
                           const SizedBox(height: 10.0),
-                          TextButton(
-                            child: const Text(
-                              '...بیشتر',
-                              style: TextStyle(
-                                color: Colors.black45,
-                                fontSize: 15,
-                                fontFamily: 'Lalezar',
-                              ),
-                            ),
-                            onPressed: () {},
-                          ),
+                          // PRODUCT PRICE
+                          BuildProductPrice(
+                              productPrice: '${widget.product?.price}'),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 0.0,
-                left: 20.0,
-                right: 20.0,
-                child: Container(
-                  width: 600,
-                  height: 800,
-                  padding: const EdgeInsets.all(20.0),
-                  child: Stack(
-                    children: [
-                      // Product Image
-                      BuildProductImage(
-                          productImage: widget.product!.images![0].src),
-                      // ProductFeatures
-                      // const BuildProductFeatures(),
                     ],
                   ),
-                ),
+                  // Product Description
+                  const SizedBox(height: 15.0),
+                  BuildProductDescription(
+                    productDescription: widget.product?.description,
+                  ),
+                  // const SizedBox(height: 10.0),
+                  TextButton(
+                    child: const Text(
+                      '...بیشتر',
+                      style: TextStyle(
+                        color: Colors.black45,
+                        fontSize: 15,
+                        fontFamily: 'Lalezar',
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            top: 10.0,
+            left: 20.0,
+            right: 20.0,
+            child: Container(
+              width: size.width,
+              height: size.height * 0.8,
+              padding: const EdgeInsets.all(20.0),
+              child: Stack(
+                children: [
+                  // Product Image
+                  BuildProductImage(
+                      productImage: widget.product!.images![0].src),
+                  // ProductFeatures
+                  // const BuildProductFeatures(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: SizedBox(
-        width: size.width * 0.93,
+        width: size.width * 0.9,
         height: 50.0,
         child: Row(
           children: [
             const BuildCartIcon(),
-            const SizedBox(width: 12.0),
+            const SizedBox(width: 20.0),
             BuildAddtoCart(
               // NABEGHEHA.COM
               shopProvider: shopProvider,

@@ -22,7 +22,7 @@ class BuildProductDescription extends StatelessWidget {
 
         textDirection: TextDirection.rtl,
         // textAlign: TextAlign.justify,
-        maxLines: 20,
+        maxLines: 14,
 
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
