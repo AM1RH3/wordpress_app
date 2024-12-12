@@ -60,7 +60,7 @@ class ShopProvider with ChangeNotifier {
             (value, element) => value! + element!,
           )
       : 0;
-// NABEGHEHA.COM
+
   Future<void> getAllWordpressPosts() async {
     isLoadingPosts = true;
     notifyListeners();
@@ -122,7 +122,6 @@ class ShopProvider with ChangeNotifier {
     );
   }
 
-// NABEGHEHA.COM
   Future<void> fetchCartItems() async {
     bool isLoggedin = await SecureSorageDB().isLoggedin();
     if (_itemsinCart == null) initializeData();
@@ -210,7 +209,6 @@ class ShopProvider with ChangeNotifier {
     _customerDetailsModel = await _apiService?.getCustomerDetails();
   }
 
-// NABEGHEHA.COM
   updateCustomerDetails(CustomerDetailsModel customerDetailsModel) async {
     isLoadingShippingDetails = true;
     notifyListeners();
