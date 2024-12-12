@@ -13,7 +13,9 @@ class BuildProductName extends StatelessWidget {
     // NABEGHEHA.COM
     return Text(
       '$productname',
+      // .length > 19 ? '$productname \n' : '$productname',
       textDirection: TextDirection.rtl,
+      maxLines: 3,
       style: TextStyle(
         fontFamily: 'Vazir',
         color: Constants.blackColor,

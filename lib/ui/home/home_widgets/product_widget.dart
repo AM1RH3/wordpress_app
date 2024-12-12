@@ -113,20 +113,24 @@ class BuildProduct extends StatelessWidget {
                                     20.0,
                                   ),
                                 ),
-                                child: Text(
-                                  '${Constants.numberFormat.format(
-                                    int.parse(
-                                      value.productByCategory[index].price
-                                          .toString(),
+                                child: SizedBox(
+                                  // width: 150,
+                                  child: Text(
+                                    '${Constants.numberFormat.format(
+                                      int.parse(
+                                        value.productByCategory[index].price
+                                            .toString(),
+                                      ),
+                                    )} تومان'
+                                        .farsiNumber,
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      color: Constants.primaryColor,
+                                      fontSize: 12.0,
+                                      fontFamily: 'Lalezar',
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  )} تومان'
-                                      .farsiNumber,
-                                  textDirection: TextDirection.rtl,
-                                  style: TextStyle(
-                                    color: Constants.primaryColor,
-                                    fontSize: 12.0,
-                                    fontFamily: 'Lalezar',
-                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -148,17 +152,23 @@ class BuildProduct extends StatelessWidget {
                                   //     fontSize: 14.0,
                                   //   ),
                                   // ),
-                                  Text(
-                                    // inja
-                                    value.productByCategory[index].name
-                                        .toString(),
-                                    textDirection: TextDirection.rtl,
-                                    style: const TextStyle(
-                                      fontFamily: 'Lalezar',
-                                      // NABEGHEHA.COM
-                                      color: Colors.black87,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold,
+                                  SizedBox(
+                                    width: 140,
+                                    child: Text(
+                                      // inja
+                                      value.productByCategory[index].name
+                                          .toString(),
+                                      textDirection: TextDirection.rtl,
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        fontFamily: 'Lalezar',
+                                        // NABEGHEHA.COM
+                                        color: Colors.black87,
+
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ],

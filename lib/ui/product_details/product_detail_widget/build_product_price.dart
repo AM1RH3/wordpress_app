@@ -20,6 +20,7 @@ class BuildProductPrice extends StatelessWidget {
             child: Image.asset('assets/images/PriceUnit-green.png')),
         const SizedBox(width: 5.0),
         Text(
+          textDirection: TextDirection.rtl,
           Constants.numberFormat.format(int.parse('$productPrice')).farsiNumber,
           style: TextStyle(
             fontFamily: 'Vazir',
