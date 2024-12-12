@@ -9,7 +9,7 @@ class SecureSorageDB {
       encryptedSharedPreferences: true,
     ),
   );
-// NABEGHEHA.COM
+
   Future setLoginDetails(
     LoginResponseModel? loginResponseModel,
   ) async {
@@ -35,7 +35,6 @@ class SecureSorageDB {
     }
   }
 
-// NABEGHEHA.COM
   Future<bool> isLoggedin() async {
     String? value = await storage.read(key: 'login_details');
     return value != null ? true : false;

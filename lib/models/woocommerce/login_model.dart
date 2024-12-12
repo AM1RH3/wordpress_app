@@ -12,7 +12,7 @@ class LoginResponseModel {
     this.message,
     this.data,
   });
-// NABEGHEHA.COM
+
   LoginResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     statusCode = json['statusCode'];
@@ -67,7 +67,7 @@ class Data {
     this.lastName,
     this.displayName,
   });
-// NABEGHEHA.COM
+
   Data.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     id = json['id'];

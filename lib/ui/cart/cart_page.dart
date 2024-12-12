@@ -27,7 +27,7 @@ class _CartPageState extends State<CartPage> {
       cartItemsList.initializeData();
       cartItemsList.fetchCartItems();
     });
-    // NABEGHEHA.COM
+
     super.initState();
   }
 
@@ -52,9 +52,8 @@ class _CartPageState extends State<CartPage> {
                   child: LoadingAnimationWidget.staggeredDotsWave(
                     color: Constants.primaryColor,
                     size: 50,
-                  ), 
+                  ),
                 );
-                // NABEGHEHA.COM
               } else if (cartModel.itemsinCart!.isEmpty) {
                 return const BuildEmptyCart();
               } else {
