@@ -36,7 +36,6 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => CatalogProvider(),
           child: const CatalogPage(),
-          // NABEGHEHA.COM
         ),
         ChangeNotifierProvider(
           create: (context) => OrderProvider(),
