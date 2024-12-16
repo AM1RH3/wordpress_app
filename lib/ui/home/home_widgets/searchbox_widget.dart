@@ -12,7 +12,6 @@ class BuildSearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // NABEGHEHA.COM
       padding: const EdgeInsets.only(top: 20.0),
       child: Center(
         child: Container(
@@ -57,7 +56,6 @@ class BuildSearchBox extends StatelessWidget {
                   ),
                 ),
               ),
-              // NABEGHEHA.COM
               Icon(
                 Icons.search,
                 color: Constants.blackColor.withOpacity(0.6),

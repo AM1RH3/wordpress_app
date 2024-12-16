@@ -10,7 +10,7 @@ class BuildAddtoCart extends StatelessWidget {
   final LoaderProvider loaderProvider;
   final CartProducts cartProducts;
   final int? productID;
-  // NABEGHEHA.COM
+
   const BuildAddtoCart({
     super.key,
     required this.shopProvider,

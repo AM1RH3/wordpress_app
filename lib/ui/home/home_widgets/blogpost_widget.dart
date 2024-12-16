@@ -10,7 +10,7 @@ class BuildBlogPost extends StatelessWidget {
     super.key,
     required this.size,
   });
-// NABEGHEHA.COM
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ShopProvider>(
@@ -88,7 +88,6 @@ class BuildBlogPost extends StatelessWidget {
                                     shape: BoxShape.circle,
                                   ),
                                 ),
-                                // NABEGHEHA.COM
                                 const Positioned(
                                   bottom: -10.0,
                                   left: 0,

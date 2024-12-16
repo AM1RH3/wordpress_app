@@ -10,7 +10,7 @@ class BuildCartItems extends StatelessWidget {
     super.key,
     required this.size,
   });
-// NABEGHEHA.COM
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ShopProvider>(
@@ -120,7 +120,6 @@ class BuildCartItems extends StatelessWidget {
                               ),
                             ),
                           ),
-                          // NABEGHEHA.COM
                           Positioned(
                             bottom: 5.0,
                             left: 0,

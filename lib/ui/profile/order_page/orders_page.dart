@@ -18,7 +18,6 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   void initState() {
     Future.delayed(Duration.zero).then((value) {
-      // NABEGHEHA.COM
       OrderProvider orderProvider =
           Provider.of<OrderProvider>(context, listen: false);
       orderProvider.fetchOrders();
@@ -136,7 +135,6 @@ class _OrdersPageState extends State<OrdersPage> {
         builder: (context, orderModel, child) {
           if (orderModel.isLoading) {
             return Center(
-              // NABEGHEHA.COM
               child: LoadingAnimationWidget.staggeredDotsWave(
                 color: Constants.primaryColor,
                 size: 50,
@@ -161,7 +159,6 @@ class _OrdersPageState extends State<OrdersPage> {
                       child: Directionality(
                         textDirection: TextDirection.rtl,
                         child: Column(
-                          // NABEGHEHA.COM
                           children: [
                             const SizedBox(height: 20.0),
                             orderStatus(
@@ -227,7 +224,6 @@ class _OrdersPageState extends State<OrdersPage> {
                                 ),
                               ],
                             ),
-                            // NABEGHEHA.COM
                             const SizedBox(height: 15.0),
                           ],
                         ),

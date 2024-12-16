@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        // NABEGHEHA.COM
         automaticallyImplyLeading: false,
         title: const BuildCustomAppBar(appBarTitle: 'خانه'),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

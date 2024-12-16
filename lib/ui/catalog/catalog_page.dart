@@ -11,7 +11,7 @@ import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 
 class CatalogPage extends StatefulWidget {
   const CatalogPage({super.key});
-// NABEGHEHA.COM
+
   @override
   State<CatalogPage> createState() => _CatalogPageState();
 }
@@ -39,7 +39,6 @@ class _CatalogPageState extends State<CatalogPage> {
               _scrollController.position.maxScrollExtent) {
             productList.setLoadingState(DataStatus.loading);
             productList.fetchProducts(++productList.page);
-            // NABEGHEHA.COM
           }
         }
       });
@@ -90,7 +89,6 @@ class _CatalogPageState extends State<CatalogPage> {
                     ),
                   ),
                 ),
-          // NABEGHEHA.COM
           Visibility(
             visible: isLoadMore,
             child: Container(

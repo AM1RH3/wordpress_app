@@ -12,7 +12,6 @@ class BuildOptions extends StatelessWidget {
     required this.icon,
     this.onPressed,
   });
-  // NABEGHEHA.COM
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,6 @@ class BuildOptions extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  // NABEGHEHA.COM
                   style: TextStyle(
                     fontFamily: 'IranSans',
                     color: Constants.blackColor,

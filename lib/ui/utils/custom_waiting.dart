@@ -4,7 +4,6 @@ class CustomWaiting extends StatelessWidget {
   const CustomWaiting({super.key});
 
   @override
-  // NABEGHEHA.COM
   Widget build(BuildContext context) {
     return const Text(
       'لطفاً منتظر بمانید.....',

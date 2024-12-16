@@ -35,7 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
         automaticallyImplyLeading: false,
         title: const BuildCustomAppBar(appBarTitle: 'پروفایل'),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // NABEGHEHA.COM
         elevation: 0.0,
       ),
       body: FutureBuilder(
@@ -44,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
           if (shipingDetail.connectionState == ConnectionState.waiting) {
             return Center(
               child: LoadingAnimationWidget.staggeredDotsWave(
-                color: Constants.primaryColor, 
+                color: Constants.primaryColor,
                 size: 50,
               ),
             );
@@ -68,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(height: 30.0),
                   // Profile Options
                   BuildProfileOptions(size: size),
-                  // NABEGHEHA.COM
                 ],
               ),
             );

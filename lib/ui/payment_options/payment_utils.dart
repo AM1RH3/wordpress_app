@@ -24,7 +24,7 @@ class BuildPaymentOptions extends StatelessWidget {
         //   color: Constants.primaryColor,
         //   size: 45.0,
         // ),
-        // NABEGHEHA.COM
+
         title: Text(
           paymentTitle,
           maxLines: 1,
@@ -71,7 +71,6 @@ class BuildClickPaymentMethod extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
-          // NABEGHEHA.COM
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(

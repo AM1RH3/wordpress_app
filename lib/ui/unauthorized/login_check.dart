@@ -11,7 +11,6 @@ class LoginOrNot extends StatelessWidget {
     return FutureBuilder(
       future: SecureSorageDB().isLoggedin(),
       builder: (BuildContext context, AsyncSnapshot<bool> loginModel) {
-        // NABEGHEHA.COM
         if (loginModel.connectionState == ConnectionState.waiting) {
           return Container();
         }
@@ -20,7 +19,6 @@ class LoginOrNot extends StatelessWidget {
             return const RootPage();
           } else {
             return const LoginPage();
-            // NABEGHEHA.COM
           }
         } else {
           return const LoginPage();

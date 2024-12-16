@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BuildEmptyCart extends StatelessWidget {
   const BuildEmptyCart({super.key});
-// NABEGHEHA.COM
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

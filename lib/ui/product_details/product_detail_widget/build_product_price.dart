@@ -14,7 +14,7 @@ class BuildProductPrice extends StatelessWidget {
     return Row(
       children: [
         // const SizedBox(width: 5),
-        // NABEGHEHA.COM
+
         SizedBox(
             height: 19.0,
             child: Image.asset('assets/images/PriceUnit-green.png')),

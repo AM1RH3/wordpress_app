@@ -10,7 +10,6 @@ class BuildFilterAndSearchBox extends StatelessWidget {
     super.key,
     required this.controller,
   });
-  // NABEGHEHA.COM
 
   final List<SortBy> _sortByOptions = [
     SortBy('popularity', 'محبوبیت', 'asc'),
@@ -61,7 +60,6 @@ class BuildFilterAndSearchBox extends StatelessWidget {
               ),
             ),
           ),
-          // NABEGHEHA.COM
           const SizedBox(width: 15.0),
           Container(
             decoration: BoxDecoration(

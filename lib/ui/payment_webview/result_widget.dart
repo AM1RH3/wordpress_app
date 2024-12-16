@@ -8,7 +8,7 @@ import 'package:woedpress_app/ui/utils/extensions.dart';
 
 class PaymentResult extends StatelessWidget {
   final String image;
-  // NABEGHEHA.COM
+
   final String paymentResultText;
   final String paymentRefID;
   final ShopProvider shopProvider;
@@ -83,7 +83,6 @@ class PaymentResult extends StatelessWidget {
                     },
                   );
                 },
-                // NABEGHEHA.COM
                 child: const Text(
                   'بازگشت به صفحه اصلی',
                   style: TextStyle(

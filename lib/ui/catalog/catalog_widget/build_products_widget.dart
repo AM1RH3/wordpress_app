@@ -12,7 +12,6 @@ class BuildCatalogProducts extends StatelessWidget {
     super.key,
     required this.scrollController,
   });
-  // NABEGHEHA.COM
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +88,6 @@ class BuildCatalogProducts extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              // NABEGHEHA.COM
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

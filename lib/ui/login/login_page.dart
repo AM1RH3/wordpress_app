@@ -15,7 +15,7 @@ import 'package:woedpress_app/ui/utils/validators.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-// NABEGHEHA.COM
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   late APIService apiService;
   late CustomerModel customerModel;
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-// NABEGHEHA.COM
+
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -158,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 30.0),
                               BuildCustomFormField(
                                 labelName: 'پسورد',
+                                obscureText: true,
                                 controller: password,
                                 formFieldtextDirection: TextDirection.ltr,
                                 validator: CustomValidator.passwordValidator,
@@ -173,7 +174,6 @@ class _LoginPageState extends State<LoginPage> {
                                       onPressed: navigatetoSignUp),
                                 ],
                               ),
-                              // NABEGHEHA.COM
                               const SizedBox(height: 30.0),
                               isApiCalled
                                   ? const CustomWaiting()

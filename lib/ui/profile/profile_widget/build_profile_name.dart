@@ -15,7 +15,6 @@ class BuildProfileName extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          // NABEGHEHA.COM
           '$firstName',
           style: TextStyle(
             color: Constants.blackColor,

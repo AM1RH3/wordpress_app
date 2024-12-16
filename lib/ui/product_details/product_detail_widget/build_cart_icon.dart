@@ -12,7 +12,6 @@ class BuildCartIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // NABEGHEHA.COM
       height: 50.0,
       width: 50.0,
       decoration: BoxDecoration(

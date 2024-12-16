@@ -13,7 +13,6 @@ class BuildStarScore extends StatelessWidget {
         Icon(
           Icons.star,
           size: 30.0,
-          // NABEGHEHA.COM
           color: Colors.amber[600],
         ),
         Text(

@@ -17,7 +17,6 @@ import 'package:woedpress_app/models/wordpress/wordpress_post_model.dart';
 import 'package:woedpress_app/models/zarinpal/zarinpal_request_model.dart';
 import 'package:woedpress_app/models/zarinpal/zainpal_verify_model.dart';
 
-// NABEGHEHA.COM
 class APIService {
   Future<bool> createCustomer(CustomerModel model) async {
     bool returnResponse = false;
@@ -45,7 +44,7 @@ class APIService {
     return returnResponse;
   }
 
-  Future<LoginResponseModel> loginCustomer( 
+  Future<LoginResponseModel> loginCustomer(
     String username,
     String password,
   ) async {
@@ -152,7 +151,6 @@ class APIService {
     return productCategoryList;
   }
 
-// NABEGHEHA.COM
   Future<List<WordpressPosts>> getPosts() async {
     String postURL = WoocommerceInfo.baseURLPosts;
     List<WordpressPosts> postList = <WordpressPosts>[];

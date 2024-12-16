@@ -10,7 +10,6 @@ class BuildProductName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // NABEGHEHA.COM
     return Text(
       '$productname',
       // .length > 19 ? '$productname \n' : '$productname',

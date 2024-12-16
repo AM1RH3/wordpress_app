@@ -7,7 +7,6 @@ import 'package:woedpress_app/ui/payment_webview/result_widget.dart';
 import 'package:woedpress_app/ui/utils/custom_appbar.dart';
 
 class ZarinpalSuccess extends StatefulWidget {
-  // NABEGHEHA.COM
   final int? refID;
   const ZarinpalSuccess({
     super.key,
@@ -48,7 +47,6 @@ class _ZarinpalSuccessState extends State<ZarinpalSuccess> {
               loaderProvider: loaderProvider,
             )
           : PaymentResult(
-              // NABEGHEHA.COM
               image: 'assets/images/unsuccessful_payment.png',
               paymentResultText: 'تراکنش موفقیت آمیز نبود',
               paymentRefID: 'با پشتیبانی تماس بگیرید',

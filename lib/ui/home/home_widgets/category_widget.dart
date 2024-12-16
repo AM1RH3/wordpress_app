@@ -6,7 +6,7 @@ import 'package:woedpress_app/providers/shop_provider.dart';
 
 class BuildCategory extends StatelessWidget {
   final Size size;
-// NABEGHEHA.COM
+
   BuildCategory({
     super.key,
     required this.size,
@@ -45,7 +45,6 @@ class BuildCategory extends StatelessWidget {
                     value.getProductsByCategory(catID.toString());
                   },
                   child: Text(
-                    // NABEGHEHA.COM
                     productsCategoryNames[index].name.toString(),
                     style: TextStyle(
                       fontFamily: 'iranSans',

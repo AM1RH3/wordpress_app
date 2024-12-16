@@ -4,7 +4,6 @@ class BuildProductImage extends StatelessWidget {
   final String? productImage;
   const BuildProductImage({
     super.key,
-    // NABEGHEHA.COM
     this.productImage,
   });
 

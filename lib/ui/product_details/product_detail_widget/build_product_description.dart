@@ -9,7 +9,6 @@ class BuildProductDescription extends StatelessWidget {
 
   final String? productDescription;
   const BuildProductDescription({
-    // NABEGHEHA.COM
     super.key,
     this.productDescription,
   });

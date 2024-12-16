@@ -11,7 +11,7 @@ import 'package:woedpress_app/ui/verify_address/verify_address_page.dart';
 
 class BuildTotalAmount extends StatelessWidget {
   const BuildTotalAmount({super.key});
-// NABEGHEHA.COM
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ShopProvider>(
@@ -97,7 +97,6 @@ class BuildTotalAmount extends StatelessWidget {
                       highlightColor: Colors.transparent,
                       splashColor: Colors.transparent,
                     ),
-                    // NABEGHEHA.COM
                     InkResponse(
                       child: Container(
                         padding: const EdgeInsets.symmetric(

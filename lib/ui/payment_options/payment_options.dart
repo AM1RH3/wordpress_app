@@ -13,7 +13,7 @@ import 'package:woedpress_app/ui/utils/extensions.dart';
 
 class PaymentOptions extends StatefulWidget {
   const PaymentOptions({super.key});
-// NABEGHEHA.COM
+
   @override
   State<PaymentOptions> createState() => _PaymentOptionsState();
 }
@@ -31,7 +31,6 @@ class _PaymentOptionsState extends State<PaymentOptions> {
   }
 
   Future<ZarinpalRequest?> getZarinpalAuthoriyCode(String totalAmount) async {
-    // NABEGHEHA.COM
     return await apiService!.getAuthority(totalAmount);
   }
 

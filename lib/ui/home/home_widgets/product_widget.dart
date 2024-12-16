@@ -9,7 +9,7 @@ import 'package:woedpress_app/ui/utils/extensions.dart';
 
 class BuildProduct extends StatelessWidget {
   final Size size;
-// NABEGHEHA.COM
+
   const BuildProduct({
     super.key,
     required this.size,
@@ -37,7 +37,6 @@ class BuildProduct extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        // NABEGHEHA.COM
                         Navigator.of(context).push(
                           CupertinoPageRoute(
                             builder: (BuildContext context) {
@@ -162,9 +161,7 @@ class BuildProduct extends StatelessWidget {
                                       maxLines: 1,
                                       style: const TextStyle(
                                         fontFamily: 'Lalezar',
-                                        // NABEGHEHA.COM
                                         color: Colors.black87,
-
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 16.0,
                                         fontWeight: FontWeight.bold,

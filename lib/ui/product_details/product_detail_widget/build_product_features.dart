@@ -7,7 +7,6 @@ class BuildProductFeatures extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Positioned(
-      // NABEGHEHA.COM
       top: 0.0,
       right: 0.0,
       child: SizedBox(

@@ -12,7 +12,6 @@ class BuildProfilePic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 150.0,
-      // NABEGHEHA.COM
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(

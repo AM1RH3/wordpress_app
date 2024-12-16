@@ -18,7 +18,6 @@ class BuildProfileOptions extends StatelessWidget {
       height: size.height * 0.4,
       width: size.width,
       child: Column(
-        // NABEGHEHA.COM
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const BuildOptions(title: 'پروفایل من', icon: Icons.person),
@@ -43,7 +42,6 @@ class BuildProfileOptions extends StatelessWidget {
             onPressed: () {
               SecureSorageDB().logOut().then(
                 (value) {
-                  // NABEGHEHA.COM
                   Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
                       CupertinoPageRoute(
                     builder: (context) {

@@ -21,7 +21,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   late APIService apiService;
   late CustomerModel customerModel;
-  // NABEGHEHA.COM
+
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
 
   bool isApiCalled = false;
@@ -32,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
       TextEditingController(text: customerModel.lastName);
   late TextEditingController email =
       TextEditingController(text: customerModel.email);
-  // NABEGHEHA.COM
+
   late TextEditingController password =
       TextEditingController(text: customerModel.password);
 
@@ -130,7 +130,6 @@ class _SignupPageState extends State<SignupPage> {
                         // FIRSTNAME
                         BuildCustomFormField(
                           controller: firstName,
-                          // NABEGHEHA.COM
                           labelName: 'نام',
                           onChanged: (value) {
                             customerModel.firstName = value;

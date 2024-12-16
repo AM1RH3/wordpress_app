@@ -158,7 +158,7 @@ class _RootPageState extends State<RootPage> {
 //           // Screen transition animation on change of selected tab.
 //           animateTabTransition: true,
 //           curve: Curves.ease,
-//           // NABEGHEHA.COM
+//
 //           duration: Duration(milliseconds: 200),
 //         ),
 //         navBarStyle: NavBarStyle.style12, // Choose the nav bar style with this property.

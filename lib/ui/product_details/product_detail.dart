@@ -54,7 +54,6 @@ class _ProductDetailState extends State<ProductDetail> {
                   const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
               height: size.height * 0.55,
               width: size.width,
-              // NABEGHEHA.COM
               decoration: BoxDecoration(
                 color: Constants.primaryColor.withOpacity(0.2),
                 borderRadius: const BorderRadius.only(
@@ -135,7 +134,6 @@ class _ProductDetailState extends State<ProductDetail> {
             const BuildCartIcon(),
             const SizedBox(width: 20.0),
             BuildAddtoCart(
-              // NABEGHEHA.COM
               shopProvider: shopProvider,
               loaderProvider: loaderProvider,
               cartProducts: cartProducts,

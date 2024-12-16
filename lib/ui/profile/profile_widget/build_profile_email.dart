@@ -7,7 +7,6 @@ class BuildProfileEmail extends StatelessWidget {
     super.key,
     this.profileEmail,
   });
-  // NABEGHEHA.COM
 
   @override
   Widget build(BuildContext context) {
