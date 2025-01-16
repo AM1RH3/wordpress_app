@@ -37,7 +37,12 @@
   </td>
   
 <td width="20%" align="center">
-  
+  <a>
+   📲 Current Platforms :
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Android_robot.png" alt="android" width="25"align="right"/>
+  </a>
+
+<br></br>
    <img src="h3shop.gif" alt="gif" width="230"/>
 
 </td>
