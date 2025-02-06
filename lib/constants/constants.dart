@@ -3,19 +3,19 @@ import 'package:intl/intl.dart';
 
 class WoocommerceInfo {
   // CONSUMERKEY & CONSUM ERSECRET
-  static String consumersKey = 'ck_298f4c0e905e2afb75e1332ddf4361eb78138a3d';
-  static String consumerSecret = 'cs_68522ee14f072a16b1d947282f0adf398d7999d2';
+  static String consumersKey = 'Ck_on_wordpress';
+  static String consumerSecret = 'Cs_on_wordpress';
 
   // BASE URL WOOCOMMERCE
-  static String baseURL = 'https://webdev-demo.ir/amir/wp-json/wc/v3/';
+  static String baseURL = 'url.../wp-json/wc/v3/';
 
   //Base URL of Wordpress
   static String baseURLPosts =
-      'https://webdev-demo.ir/amir/wp-json/wp/v2/posts?_embed';
+      'url.../wp-json/wp/v2/posts?_embed';
 
   // URL For AUTH with JWT
   static String tokenURL =
-      'https://webdev-demo.ir/amir/wp-json/jwt-auth/v1/token';
+      'url.../wp-json/jwt-auth/v1/token';
 
   // API ENDPOINTS
   static String customerURL = 'customers';
